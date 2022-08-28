@@ -20,6 +20,8 @@
     "module": "es2020",
     "lib": ["es2020", "dom"],
     "paths": {
+      // Core
+      "@dlp/core/components": ["src/app/core/components/index.ts"],
       // Shared
       "@dlp/shared/modules": ["src/app/shared/modules/index.ts"],
       // Auth
