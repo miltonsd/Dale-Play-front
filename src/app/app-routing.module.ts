@@ -1,10 +1,27 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [];
+import { NotfoundComponent } from './shared/components/notfound/notfound.component';
+
+const routes: Routes = [
+  {
+    path: '',
+    loadChildren: () =>
+      import('./modules/auth/auth.module').then((m) => m.AuthModule),
+  },
+  {
+    path: 'games',
+    loadChildren: () =>
+      import('./modules/games/games.module').then((m) => m.GamesModule),
+  },
+  {
+    path: '**',
+    component: NotfoundComponent,
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
