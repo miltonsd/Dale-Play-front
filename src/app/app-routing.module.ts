@@ -15,6 +15,11 @@ const routes: Routes = [
       import('./modules/games/games.module').then((m) => m.GamesModule),
   },
   {
+    path: 'user',
+    loadChildren: () =>
+      import('./modules/user/user.module').then((m) => m.UserModule),
+  },
+  {
     path: '**',
     component: NotfoundComponent,
   },

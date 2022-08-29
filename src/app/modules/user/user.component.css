@@ -1,6 +1,7 @@
-.games-list {
+.profile {
   margin: auto;
   margin-top: 85px;
+  background-color: lightblue;
   justify-content: center;
   max-width: 1280px;
   padding: 10px;
@@ -15,8 +16,8 @@
   padding: 10px 10px 20px 10px;
 }
 
-.cards {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2rem;
+.games-library {
+  max-width: 1280px;
+  margin: auto;
+  justify-content: center;
 }
