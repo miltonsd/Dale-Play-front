@@ -1,0 +1,21 @@
+.login {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-content {
+  background-color: antiquewhite; /* Provisorio */
+  width: 350px;
+  padding: 2% 1% 2% 1%;
+  border-radius: 5%;
+}
+
+.login-input {
+  width: 100%;
+}
+
+.login-submit {
+  margin-bottom: 3%;
+}

@@ -1,0 +1,18 @@
+.titulo {
+  margin-top: 90px;
+  display: flex;
+  justify-content: center;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 48px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  max-width: 1280px;
+  margin: auto;
+  margin-top: 64px;
+  justify-content: center;
+}

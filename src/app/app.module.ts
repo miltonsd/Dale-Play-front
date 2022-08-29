@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 // Importación del Header y el Footer
 import { HeaderComponent, FooterComponent } from '@dlp/core/components';
 // Módulos compartidos
-import { ComponentsModule } from './shared/modules';
+import { ComponentsModule, MaterialModule } from '@dlp/shared/modules';
 
 const components = [HeaderComponent, FooterComponent];
 @NgModule({
@@ -17,6 +17,7 @@ const components = [HeaderComponent, FooterComponent];
     BrowserModule,
     AppRoutingModule,
     ComponentsModule,
+    MaterialModule,
     BrowserAnimationsModule,
   ],
   providers: [],
