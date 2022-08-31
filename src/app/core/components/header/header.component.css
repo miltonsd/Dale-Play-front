@@ -1,7 +1,21 @@
-.nav {
+.header {
+  background-color: #3f51b5;
+  color: #fff;
+  height: 44px;
+  padding: 8px 16px;
   position: fixed;
+  z-index: 1;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 2;
+  display: flex;
+  align-items: center;
+}
+
+a:focus {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+a:hover {
+  background: rgba(0, 0, 0, 0.4);
 }

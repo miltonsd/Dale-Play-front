@@ -1,16 +1,13 @@
 .footer {
-  background: #3f51b5;
+  background-color: #3f51b5;
   color: #fff;
-  padding: 12px;
   font-size: 12px;
-  margin-top: 3%;
+  height: 110px;
+  padding: 10px 5%;
+  display: flex;
+  justify-content: center;
 }
 
 .footer-copyright {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  margin-top: 8px;
-  align-items: center;
-  padding: 5px;
+  padding-top: 1%;
 }

@@ -1,0 +1,76 @@
+/* X-Small devices (portrait phones, less than 576px) */
+
+.grid {
+  display: grid;
+  grid-template-areas: "header header" "content aside" "footer footer";
+  grid-template-rows: 60px auto auto;
+  grid-template-columns: 100% auto;
+}
+
+.grid-header {
+  grid-area: header;
+}
+
+.grid-content {
+  grid-area: content;
+  min-height: 393px;
+}
+
+.grid-aside {
+  grid-area: aside;
+  visibility: hidden;
+}
+
+.grid-footer {
+  grid-area: footer;
+}
+
+/* Small devices (landscape phones, 576px and up) */
+
+@media only screen and (min-width: 576px) {
+  /* .grid-content {
+    background: springgreen;
+  } */
+}
+
+/* Medium devices (tablets, 768px and up) */
+
+@media only screen and (min-width: 768px) {
+  /* .grid-content {
+    background: pink;
+  } */
+}
+
+/* Large devices (desktops, 992px and up) */
+
+@media only screen and (min-width: 992px) {
+  .grid {
+    grid-template-columns: auto 8%;
+  }
+  .grid-aside {
+    visibility: visible;
+    /* background-color: orange; */
+  }
+  /* .grid-content {
+    background: lightblue;
+  } */
+}
+
+/* X-Large devices (large desktops, 1200px and up) */
+
+@media only screen and (min-width: 1200px) {
+  .grid {
+    grid-template-columns: auto 10%;
+  }
+  .grid-aside {
+    min-height: 500px;
+  }
+}
+
+/* XX-Large devices (larger desktops, 1400px and up) */
+
+@media only screen and (min-width: 1440px) {
+  .grid {
+    grid-template-columns: auto 12%;
+  }
+}
