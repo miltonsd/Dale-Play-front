@@ -24,6 +24,7 @@
       "@dlp/core/components": ["src/app/core/components/index.ts"],
       // Shared
       "@dlp/shared/modules": ["src/app/shared/modules/index.ts"],
+      "@dlp/shared/guards": ["src/app/shared/guards/index.ts"],
       // Auth
       "@dlp/auth/views": ["src/app/modules/auth/views/index.ts"]
     }

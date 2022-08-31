@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { NotfoundComponent } from './shared/components/notfound/notfound.component';
 
+import { AuthGuard } from '@dlp/shared/guards';
+
 const routes: Routes = [
   {
     path: '',
@@ -11,6 +13,7 @@ const routes: Routes = [
   },
   {
     path: 'games',
+    canLoad: [AuthGuard],
     loadChildren: () =>
       import('./modules/games/games.module').then((m) => m.GamesModule),
   },
