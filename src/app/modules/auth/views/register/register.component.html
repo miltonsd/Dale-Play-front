@@ -1,44 +1,52 @@
-<article class="register">
+<div class="register">
   <form [formGroup]="form" class="register-content" (submit)="onSubmit()">
     <h1>REGISTRAR USUARIO</h1>
 
     <mat-form-field appearance="outline" class="register-input">
       <mat-label>Ingrese su nombre</mat-label>
-      <input matInput formControlName="name" placeholder="Nombre">
+      <input matInput formControlName="name" placeholder="Nombre" tabindex="1">
+      <mat-error *ngIf="form.controls.name.hasError('required')">El nombre es necesario</mat-error>
+      <mat-error *ngIf="form.controls.name.hasError('pattern')">El nombre no puede contener números</mat-error>
     </mat-form-field>
     
     <mat-form-field appearance="outline" class="register-input">
       <mat-label>Ingrese su apellido</mat-label>
-      <input matInput formControlName="surname" placeholder="Apellido">
+      <input matInput formControlName="surname" placeholder="Apellido" required tabindex="2">
+      <mat-error *ngIf="form.controls.surname.hasError('required')">El apellido es necesario</mat-error>
+      <mat-error *ngIf="form.controls.surname.hasError('pattern')">El apellido no puede contener números</mat-error>
     </mat-form-field>
     
     <mat-form-field appearance="outline" class="register-input">
       <mat-label>Ingrese su email</mat-label>
-      <input matInput formControlName="email" placeholder="Email">
+      <input matInput formControlName="email" placeholder="Email" tabindex="3">
+      <mat-error *ngIf="form.controls.email.hasError('required')">El email es necesario</mat-error>
+      <mat-error *ngIf="form.controls.email.hasError('email')">El email debe tener un formato válido</mat-error>
     </mat-form-field>
     
     <mat-form-field appearance="outline" class="register-input">
-      <mat-label>Ingrese su contraseña</mat-label>
-      <input matInput matInput [type]="hide ? 'password' : 'text'" formControlName="password" placeholder="Contraseña">
-      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Ocultar contraseña'" [attr.aria-pressed]="hide">
-        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      <mat-label>Ingrese una contraseña</mat-label>
+      <input matInput [type]="hidePass ? 'password' : 'text'" formControlName="password" placeholder="Contraseña"  required tabindex="4">
+      <button type="button" mat-icon-button matSuffix (click)="hidePass = !hidePass" [attr.aria-label]="'Ocultar contraseña'" [attr.aria-pressed]="hidePass" tabindex="-1">
+        <mat-icon>{{hidePass ? 'visibility_off' : 'visibility'}}</mat-icon>
       </button>
+      <mat-error *ngIf="form.controls.password.hasError('required')">La contraseña es necesaria</mat-error>
     </mat-form-field>
     
     <mat-form-field appearance="outline" class="register-input">
       <mat-label>Confirme la contraseña</mat-label>
-      <input matInput matInput [type]="hide ? 'password' : 'text'" formControlName="password" placeholder="Confirmar contraseña">
-      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Ocultar contraseña'" [attr.aria-pressed]="hide">
-        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      <input matInput [type]="hideConfirm ? 'password' : 'text'" formControlName="confirmPassword" placeholder="Confirmar contraseña" required tabindex="5">
+      <button type="button" mat-icon-button matSuffix (click)="hideConfirm = !hideConfirm" [attr.aria-label]="'Ocultar contraseña'" [attr.aria-pressed]="hideConfirm" tabindex="-1">
+        <mat-icon>{{hideConfirm ? 'visibility_off' : 'visibility'}}</mat-icon>
       </button>
+      <mat-error *ngIf="form.controls.confirmPassword.hasError('required')">La contraseña es necesaria</mat-error>
     </mat-form-field>
 
-    <button type="submit" mat-flat-button color="primary" class="register-submit">
+    <button type="submit" mat-flat-button color="primary" class="register-submit" tabindex="6">
       Registrarse
     </button>
 
     <section class="register-redirect">
-      <a [routerLink]="['/login']">¿Tienes una cuenta? Iniciar sesión</a>
+      <a [routerLink]="['/login']" tabindex="7">¿Tienes una cuenta? Iniciar sesión</a>
     </section>
   </form>
-</article>
+</div>

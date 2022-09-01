@@ -30,7 +30,6 @@ export class LoginComponent implements OnInit {
       this._authService.login(user).subscribe({
         next: (res) => {
           localStorage.setItem('token', res.msg.token);
-          this._router.navigate(['/games']);
         },
         error: (err) => console.error(err),
         complete: () => this._router.navigate(['/games']),

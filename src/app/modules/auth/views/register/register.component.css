@@ -1,14 +1,14 @@
 .register {
   display: flex;
-  height: 100vh;
   justify-content: center;
   align-items: center;
+  min-height: 79.7vh;
 }
 
 .register-content {
   background-color: antiquewhite; /* Provisorio */
   width: 350px;
-  padding: 2% 1% 2% 1%;
+  padding: 2%;
   border-radius: 5%;
 }
 
@@ -17,5 +17,5 @@
 }
 
 .register-submit {
-  margin-bottom: 3%;
+  margin: 3% 0%;
 }
