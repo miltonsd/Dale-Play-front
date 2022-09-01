@@ -4,23 +4,26 @@
     
     <mat-form-field appearance="outline" class="login-input">
       <mat-label>Ingrese su email</mat-label>
-      <input matInput formControlName="email" placeholder="Email">
+      <input matInput formControlName="email" placeholder="Email" tabindex="1">
+      <mat-error *ngIf="form.controls.email.hasError('required')">El email es necesario</mat-error>
+      <mat-error *ngIf="form.controls.email.hasError('email')">El email debe tener un formato válido</mat-error>
     </mat-form-field>
     
     <mat-form-field appearance="outline" class="login-input">
       <mat-label>Ingrese su contraseña</mat-label>
-      <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" placeholder="Contraseña">
-      <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Ocultar contraseña'" [attr.aria-pressed]="hide">
+      <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" placeholder="Contraseña" tabindex="2">
+      <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Ocultar contraseña'" [attr.aria-pressed]="hide" tabindex="-1">
         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
       </button>
+      <mat-error *ngIf="form.controls.password.hasError('required')">La contraseña es necesaria</mat-error>
     </mat-form-field>
     
-    <button type="submit" mat-flat-button color="primary" class="login-submit">
+    <button type="submit" mat-flat-button color="primary" class="login-submit" tabindex="3">
       Iniciar sesión
     </button>
     
     <section class="login-redirect">
-      <a [routerLink]="['/register']">¿No tiene una cuenta? Registrarse</a>
+      <a [routerLink]="['/register']" tabindex="4">¿No tiene una cuenta? Registrarse</a>
     </section>
   </form>
 </div>
