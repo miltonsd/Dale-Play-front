@@ -12,7 +12,7 @@ const routes: Routes = [
       import('./modules/auth/auth.module').then((m) => m.AuthModule),
   },
   {
-    path: 'games',
+    path: 'store',
     canLoad: [AuthGuard],
     loadChildren: () =>
       import('./modules/games/games.module').then((m) => m.GamesModule),
