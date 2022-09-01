@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 
+import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'dlp-login',
   templateUrl: './login.component.html',
@@ -13,16 +15,26 @@ export class LoginComponent implements OnInit {
   });
   hide = true;
 
-  constructor() {}
+  constructor(private _router: Router, private _authService: AuthService) {}
 
-  ngOnInit(): void {
-    console.log(this.form.value);
-  }
+  ngOnInit(): void {}
 
   onSubmit() {
     if (this.form.valid) {
-      console.log(this.form.value);
+      const user = {
+        email: this.form.value.email,
+        password: this.form.value.password,
+      };
+      this._authService.login(user).subscribe({
+        next: (res) => {
+          localStorage.setItem('token', res.msg.token);
+          this._router.navigate(['/games']);
+        },
+        error: (err) => console.error(err),
+        complete: () => this._router.navigate(['/games']),
+      });
     } else {
+      this.form.markAllAsTouched();
     }
   }
 }

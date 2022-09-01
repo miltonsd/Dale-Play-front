@@ -62,9 +62,6 @@
   .grid {
     grid-template-columns: auto 10%;
   }
-  .grid-aside {
-    min-height: 500px;
-  }
 }
 
 /* XX-Large devices (larger desktops, 1400px and up) */

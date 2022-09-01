@@ -1,4 +1,4 @@
-<article class="login">
+<div class="login">
   <form [formGroup]="form" class="login-content" (submit)="onSubmit()">
     <h1>INICIAR SESIÓN</h1>
     
@@ -9,8 +9,8 @@
     
     <mat-form-field appearance="outline" class="login-input">
       <mat-label>Ingrese su contraseña</mat-label>
-      <input matInput matInput [type]="hide ? 'password' : 'text'" formControlName="password" placeholder="Contraseña">
-      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Ocultar contraseña'" [attr.aria-pressed]="hide">
+      <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" placeholder="Contraseña">
+      <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Ocultar contraseña'" [attr.aria-pressed]="hide">
         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
       </button>
     </mat-form-field>
@@ -23,4 +23,4 @@
       <a [routerLink]="['/register']">¿No tiene una cuenta? Registrarse</a>
     </section>
   </form>
-</article>
+</div>
