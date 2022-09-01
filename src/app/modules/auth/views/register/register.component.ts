@@ -17,19 +17,25 @@ export class RegisterComponent implements OnInit {
       validators: [Validators.required, Validators.pattern('[a-zA-Z ]*')],
     }),
     email: new FormControl('', {
-      validators: [Validators.required, Validators.email],
+      validators: [
+        Validators.required,
+        Validators.email,
+        Validators.minLength(5),
+      ],
     }),
-    password: new FormControl('', { validators: [Validators.required] }),
-    confirmPassword: new FormControl('', { validators: [Validators.required] }),
+    password: new FormControl('', {
+      validators: [Validators.required, Validators.minLength(6)],
+    }),
+    confirmPassword: new FormControl('', {
+      validators: [Validators.required, Validators.minLength(6)],
+    }),
   });
   hidePass = true;
   hideConfirm = true;
 
   constructor(private _router: Router, private _authService: AuthService) {}
 
-  ngOnInit(): void {
-    console.log(this.form.value);
-  }
+  ngOnInit(): void {}
 
   onSubmit() {
     if (this.form.valid) {
@@ -44,8 +50,12 @@ export class RegisterComponent implements OnInit {
         next: (res) => {
           console.log(res.msg);
         },
-        error: (err) => console.error(err),
-        complete: () => this._router.navigate(['/login']),
+        error: (err) => {
+          console.error(`Código de error ${err.status}: `, err.error.msg);
+        },
+        complete: () => {
+          this._router.navigate(['/login']);
+        },
       });
     } else {
       this.form.markAllAsTouched();

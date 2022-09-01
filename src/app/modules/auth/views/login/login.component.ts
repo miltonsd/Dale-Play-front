@@ -11,9 +11,15 @@ import { AuthService } from '../../services/auth.service';
 export class LoginComponent implements OnInit {
   form = new FormGroup({
     email: new FormControl('', {
-      validators: [Validators.required, Validators.email],
+      validators: [
+        Validators.required,
+        Validators.email,
+        Validators.minLength(5),
+      ],
     }),
-    password: new FormControl('', { validators: [Validators.required] }),
+    password: new FormControl('', {
+      validators: [Validators.required, Validators.minLength(6)],
+    }),
   });
   hide = true;
 
@@ -31,8 +37,12 @@ export class LoginComponent implements OnInit {
         next: (res) => {
           localStorage.setItem('token', res.msg.token);
         },
-        error: (err) => console.error(err),
-        complete: () => this._router.navigate(['/games']),
+        error: (err) => {
+          console.error(`Código de error ${err.status}: `, err.error.msg);
+        },
+        complete: () => {
+          this._router.navigate(['/store']);
+        },
       });
     } else {
       this.form.markAllAsTouched();

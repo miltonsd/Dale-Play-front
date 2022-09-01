@@ -7,6 +7,7 @@
       <input matInput formControlName="email" placeholder="Email" tabindex="1">
       <mat-error *ngIf="form.controls.email.hasError('required')">El email es necesario</mat-error>
       <mat-error *ngIf="form.controls.email.hasError('email')">El email debe tener un formato válido</mat-error>
+      <mat-error *ngIf="form.controls.email.hasError('minlength')">El email debe contener 5 o más caracteres</mat-error>
     </mat-form-field>
     
     <mat-form-field appearance="outline" class="login-input">
@@ -16,6 +17,7 @@
         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
       </button>
       <mat-error *ngIf="form.controls.password.hasError('required')">La contraseña es necesaria</mat-error>
+      <mat-error *ngIf="form.controls.password.hasError('minlength')">La contraseña debe contener 6 o más caracteres</mat-error>
     </mat-form-field>
     
     <button type="submit" mat-flat-button color="primary" class="login-submit" tabindex="3">
