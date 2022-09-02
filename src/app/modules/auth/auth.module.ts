@@ -4,15 +4,16 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { AuthRoutingModule } from './auth-routing.module';
 import { AuthComponent } from './auth.component';
-// Views
-import { LoginComponent, RegisterComponent } from '@dlp/auth/views';
+
 // Modulos
 import { ComponentsModule, MaterialModule } from '@dlp/shared/modules';
 // Servicios
 import { AuthService } from './services/auth.service';
+// Views
+import { LoginComponent, RegisterComponent } from '@dlp/auth/views';
 
-const views = [LoginComponent, RegisterComponent];
 const modules = [ComponentsModule, MaterialModule];
+const views = [LoginComponent, RegisterComponent];
 
 @NgModule({
   declarations: [AuthComponent, ...views],

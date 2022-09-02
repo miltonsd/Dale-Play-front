@@ -28,7 +28,8 @@
       // Auth
       "@dlp/auth/views": ["src/app/modules/auth/views/index.ts"],
       // Games
-      "@dlp/games/views": ["src/app/modules/games/views/index.ts"]
+      "@dlp/games/views": ["src/app/modules/games/views/index.ts"],
+      "@dlp/games/components": ["src/app/modules/games/components/index.ts"]
     }
   },
   "angularCompilerOptions": {

@@ -3,18 +3,21 @@ import { CommonModule } from '@angular/common';
 
 import { GamesRoutingModule } from './games-routing.module';
 import { GamesComponent } from './games.component';
-import { GameComponent } from './components/game/game.component';
 
-// Views
-import { StoreComponent } from './views/store/store.component';
 // Modulos
 import { ComponentsModule, MaterialModule } from '@dlp/shared/modules';
+// Components
+import { GameComponent, GameDetailsComponent } from '@dlp/games/components';
 // Servicios
 import { GamesService } from './services/games.service';
+// Views
+import { StoreComponent } from '@dlp/games/views';
 
 const modules = [ComponentsModule, MaterialModule];
+const components = [GameComponent, GameDetailsComponent];
+const views = [StoreComponent];
 @NgModule({
-  declarations: [GamesComponent, StoreComponent, GameComponent],
+  declarations: [GamesComponent, ...components, ...views],
   imports: [CommonModule, GamesRoutingModule, ...modules],
   providers: [GamesService],
 })

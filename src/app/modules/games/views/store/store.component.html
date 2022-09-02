@@ -1,15 +1,8 @@
-<!-- <div class="games-list">  
+<div class="games-list">  
   <h1 class="titulo">Tienda</h1>
   <article class="cards">
-    <section class="card" *ngFor="let game of [1,2,3,4,5,6,7]">
-      <dlp-game></dlp-game>
+    <section class="card" *ngFor="let game of games">
+      <dlp-game [game]="game"></dlp-game>
     </section>
   </article>
-</div> -->
-
-  <article class="cards">
-    <ng-container *ngFor="let game of games">
-      <!-- <p>HOLA</p> -->
-      <dlp-game [game]="game"></dlp-game>
-    </ng-container>
-  </article>
+</div>

@@ -1,16 +1,23 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { GamesComponent } from './games.component';
-// Guards
-import { AuthGuard } from '@dlp/shared/guards';
+
+// Components
+import { GameDetailsComponent } from '@dlp/games/components';
 // Vistas
 import { StoreComponent } from '@dlp/games/views';
+// Guards
+import { AuthGuard } from '@dlp/shared/guards';
 
 const routes: Routes = [
   {
     path: '',
     canActivate: [AuthGuard],
     component: StoreComponent,
+  },
+  {
+    path: ':game',
+    component: GameDetailsComponent,
   },
 ];
 

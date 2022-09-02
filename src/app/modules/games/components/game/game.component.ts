@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+
+import { Router } from '@angular/router';
+
+import { Game } from '../../models/game';
 
 @Component({
   selector: 'dlp-game',
@@ -6,11 +10,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./game.component.css'],
 })
 export class GameComponent implements OnInit {
-  constructor() {}
+  @Input() game!: Game;
+
+  constructor(private _router: Router) {}
 
   ngOnInit(): void {}
 
   onClick(): void {
     console.log('Click');
+    this._router.navigate(['/store/', this.game.id]);
   }
 }
