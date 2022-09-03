@@ -10,14 +10,14 @@ import { Game } from '../models/game';
 })
 export class GamesService {
   constructor(private _http: HttpClient) {}
+
   // Almaceno el token para enviarlo al header
   token = localStorage.getItem('token')?.toString() || '';
+  headers = new HttpHeaders({ 'user-token': this.token });
 
   getGames() {
     return this._http
-      .get(`${environment.apiUrl}/game/`, {
-        headers: new HttpHeaders({ 'user-token': this.token }),
-      })
+      .get(`${environment.apiUrl}/game/`, { headers: this.headers })
       .pipe(
         map((response: any) => {
           const games: Game[] = [];
