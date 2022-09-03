@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Game } from '../../models/game';
 import { GamesService } from '../../services/games.service';
@@ -10,9 +11,26 @@ import { GamesService } from '../../services/games.service';
 })
 export class GameDetailsComponent implements OnInit {
   game!: Game;
-  games: Game[] = [];
+  constructor(
+    private _activatedRoute: ActivatedRoute,
+    private _gamesService: GamesService,
+    private _router: Router
+  ) {}
 
-  constructor(private _gamesService: GamesService) {}
+  ngOnInit(): void {
+    this._activatedRoute.paramMap.subscribe((paramMap: any) => {
+      const { params } = paramMap;
 
-  ngOnInit(): void {}
+      // Cargar el juego
+      this._gamesService.getGame(params.gameId).subscribe({
+        next: (res: any) => {
+          this.game = res.elemnt;
+        },
+        error: (err) => {
+          console.error(`Código de error ${err.status}: `, err.error.msg);
+          this._router.navigate(['/store']);
+        },
+      });
+    });
+  }
 }

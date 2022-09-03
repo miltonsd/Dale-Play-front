@@ -17,7 +17,6 @@ export class GameComponent implements OnInit {
   ngOnInit(): void {}
 
   onClick(): void {
-    console.log('Click');
-    this._router.navigate(['/store/', this.game.id]);
+    this._router.navigate(['/store/game/', this.game.id]);
   }
 }

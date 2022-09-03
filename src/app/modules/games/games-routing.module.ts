@@ -16,7 +16,7 @@ const routes: Routes = [
     component: StoreComponent,
   },
   {
-    path: ':gameId',
+    path: 'game/:gameId',
     component: GameDetailsComponent,
   },
 ];

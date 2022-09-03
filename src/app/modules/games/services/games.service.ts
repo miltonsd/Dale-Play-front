@@ -15,6 +15,12 @@ export class GamesService {
   token = localStorage.getItem('token')?.toString() || '';
   headers = new HttpHeaders({ 'user-token': this.token });
 
+  getGame(gameId: number) {
+    return this._http.get(`${environment.apiUrl}/game/${gameId}`, {
+      headers: this.headers,
+    });
+  }
+
   getGames() {
     return this._http
       .get(`${environment.apiUrl}/game/`, { headers: this.headers })
