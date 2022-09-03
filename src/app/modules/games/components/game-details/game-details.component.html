@@ -1,13 +1,25 @@
-<div>
-  <ng-container *ngIf="game">
-    <h1>{{game.name}}</h1>
+<ng-container *ngIf="game">
+  <div class="game">
 
-  </ng-container>
-  
-  <!-- <p>Card selected {{ game.name }}</p> -->
+    <div class="game-details">
+      <h1 class="titulo">{{game.name}}</h1>
+      <div class="description">  
+        <p> {{game.description}}</p>
+      </div>
+      <div class="panel">
+        <img class="cover" [src]="game.image" alt="{{game.name}} cover">
+        &nbsp;
+        <div class="info-panel">
+          <p> Desarrollador: {{game.idDeveloper}}</p>
+          <p> Categoría: {{game.idCategory}}</p>
+          <p> Valoración: {{game.valoration}}</p>
+        </div>
+        &nbsp;
+        <button mat-flat-button color="primary" class="boton">Agregar</button>
+        &nbsp;
+        <a mat-flat-button color="warn" class="boton" routerLink="/store">Volver a la tienda</a>
+      </div>
+    </div>
 
-  <!-- <div class="card">
-    <dlp-game [game]="game"></dlp-game>
-  </div> -->
-
-</div>
+  </div>
+</ng-container>
