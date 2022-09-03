@@ -18,9 +18,15 @@ const routes: Routes = [
       import('./modules/games/games.module').then((m) => m.GamesModule),
   },
   {
-    path: 'user',
+    path: 'users',
     loadChildren: () =>
-      import('./modules/user/user.module').then((m) => m.UserModule),
+      import('./modules/users/users.module').then((m) => m.UsersModule),
+  },
+  {
+    path: 'admin',
+    canLoad: [AuthGuard],
+    loadChildren: () =>
+      import('./modules/admin/admin.module').then((m) => m.AdminModule),
   },
   {
     path: '**',
