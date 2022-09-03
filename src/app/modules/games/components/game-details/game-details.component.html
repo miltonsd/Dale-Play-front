@@ -1,6 +1,6 @@
 <div>
-  <ng-container>
-    <dlp-game [game]="game"></dlp-game>
+  <ng-container *ngIf="game">
+    <h1>{{game.name}}</h1>
 
   </ng-container>
   
