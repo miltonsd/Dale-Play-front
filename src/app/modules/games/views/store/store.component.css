@@ -1,22 +1,36 @@
-.games-list {
-  margin: auto;
-  margin-top: 85px;
+.with-icon {
+  display: flex;
+  align-items: center;
   justify-content: center;
-  max-width: 1280px;
-  padding: 10px;
+}
+
+.games-filter {
+  background: rgba(211, 211, 211, 0.363);
+  width: 200px;
+  font-size: 20px;
+}
+
+.games-content {
+  display: grid;
+  grid-template-areas: "titulo" "games";
+  grid-template-rows: 12vh auto;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8%;
 }
 
 .titulo {
-  display: flex;
-  justify-content: center;
+  grid-area: titulo;
+  justify-self: center;
   font-size: 48px;
   font-weight: 700;
   line-height: 48px;
-  padding: 10px 10px 20px 10px;
 }
 
 .cards {
+  grid-area: games;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 2rem;
+  gap: 1rem;
+  min-height: 100vh;
 }

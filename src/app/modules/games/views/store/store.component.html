@@ -1,8 +1,34 @@
-<div class="games-list">  
-  <h1 class="titulo">Tienda</h1>
-  <article class="cards">
-    <section class="card" *ngFor="let game of games">
-      <dlp-game [game]="game"></dlp-game>
-    </section>
-  </article>
-</div>
+<mat-sidenav-container>
+  <!-- Barra lateral -->
+  <mat-sidenav mode="side" opened class="games-filter">
+    <mat-nav-list>
+      <div class="with-icon">
+        <mat-icon>
+          <span class="material-symbols-rounded">
+            filter_alt
+          </span>
+        </mat-icon>
+        Filtros
+      </div>
+    </mat-nav-list>
+
+    <mat-divider></mat-divider>
+    
+    <mat-nav-list>
+      bbb
+    </mat-nav-list> 
+  
+  </mat-sidenav>
+  
+  <mat-sidenav-content>
+    <!-- Contenido -->
+    <div class="games-content"> 
+      <h1 class="titulo">Tienda</h1>
+      <div class="cards">
+        <section class="card" *ngFor="let game of games">
+          <dlp-game [game]="game"></dlp-game>
+        </section>
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
