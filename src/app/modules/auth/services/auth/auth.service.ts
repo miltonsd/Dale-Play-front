@@ -20,7 +20,7 @@ export class AuthService {
 
   // Comprueba si el token esta almacenado
   loggedIn() {
-    return !!localStorage.getItem('token');
+    return !!localStorage.getItem('token') && this.expiredToken() > 0;
   }
 
   // Cerrar sesion de usuario
@@ -38,5 +38,15 @@ export class AuthService {
   // Obtiene el token
   getToken() {
     return localStorage.getItem('token') || '';
+  }
+
+  // Evalua que el tiempo de sesion del token no haya expirado
+  expiredToken(): number {
+    const token = this.getToken();
+    const payload: any = jwtDecode(token);
+    const actualTime = Date.now() / 1000;
+    const remainingTime = payload.expiredAt - actualTime;
+    console.log(remainingTime);
+    return remainingTime;
   }
 }
