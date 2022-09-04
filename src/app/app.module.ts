@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,6 +10,10 @@ import { AppComponent } from './app.component';
 import { ComponentsModule, MaterialModule } from '@dlp/shared/modules';
 // Importación del Header y el Footer
 import { HeaderComponent, FooterComponent } from '@dlp/core/components';
+// Servicio que envia el token como header de la request HTTP
+import { TokenInterceptorService } from '@dlp/shared/services';
+// Guards
+import { AdminGuard, AuthGuard } from '@dlp/shared/guards';
 
 const modules = [ComponentsModule, MaterialModule];
 const components = [HeaderComponent, FooterComponent];
@@ -22,7 +26,15 @@ const components = [HeaderComponent, FooterComponent];
     HttpClientModule,
     ...modules,
   ],
-  providers: [],
+  providers: [
+    AuthGuard,
+    AdminGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -9,7 +9,7 @@ import {
   UrlSegment,
   UrlTree,
 } from '@angular/router';
-import { AuthService } from 'src/app/modules/auth/services/auth.service';
+import { AuthService } from '@dlp/auth/services';
 
 @Injectable({
   providedIn: 'root',

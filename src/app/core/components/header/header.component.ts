@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/modules/auth/services/auth.service';
+import { AuthService } from '@dlp/auth/services';
 
 @Component({
   selector: 'dlp-header',
@@ -13,7 +13,6 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {}
 
   onClick(): void {
-    console.log('Click');
     this._authService.logout();
     this._router.navigate(['/login']);
   }

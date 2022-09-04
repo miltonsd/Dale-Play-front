@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { NotfoundComponent } from './shared/components/notfound/notfound.component';
+import { NotfoundComponent } from '@dlp/shared/components';
 
 import { AdminGuard, AuthGuard } from '@dlp/shared/guards';
 
@@ -27,6 +27,13 @@ const routes: Routes = [
     canLoad: [AuthGuard, AdminGuard],
     loadChildren: () =>
       import('./modules/admin/admin.module').then((m) => m.AdminModule),
+  },
+  {
+    path: 'developers',
+    loadChildren: () =>
+      import('./modules/developers/developers.module').then(
+        (m) => m.DevelopersModule
+      ),
   },
   {
     path: '**',

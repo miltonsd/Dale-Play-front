@@ -8,7 +8,7 @@ import { AuthComponent } from './auth.component';
 // Modulos
 import { ComponentsModule, MaterialModule } from '@dlp/shared/modules';
 // Servicios
-import { AuthService } from './services/auth.service';
+import { AuthService } from '@dlp/auth/services';
 // Views
 import { LoginComponent, RegisterComponent } from '@dlp/auth/views';
 

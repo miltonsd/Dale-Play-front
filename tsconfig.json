@@ -24,12 +24,15 @@
       "@dlp/core/components": ["src/app/core/components/index.ts"],
       // Shared
       "@dlp/shared/modules": ["src/app/shared/modules/index.ts"],
+      "@dlp/shared/components": ["src/app/shared/components/index.ts"],
       "@dlp/shared/guards": ["src/app/shared/guards/index.ts"],
+      "@dlp/shared/services": ["src/app/shared/services/index.ts"],
       // Auth
       "@dlp/auth/views": ["src/app/modules/auth/views/index.ts"],
+      "@dlp/auth/services": ["src/app/modules/auth/services/index.ts"],
       // Games
-      "@dlp/games/views": ["src/app/modules/games/views/index.ts"],
-      "@dlp/games/components": ["src/app/modules/games/components/index.ts"]
+      "@dlp/games/components": ["src/app/modules/games/components/index.ts"],
+      "@dlp/games/views": ["src/app/modules/games/views/index.ts"]
     }
   },
   "angularCompilerOptions": {
