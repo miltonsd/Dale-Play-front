@@ -35,6 +35,7 @@ const routes: Routes = [
         (m) => m.DevelopersModule
       ),
   },
+  { path: 'categories', loadChildren: () => import('./modules/categories/categories.module').then(m => m.CategoriesModule) },
   {
     path: '**',
     component: NotfoundComponent,

@@ -37,7 +37,14 @@
       "@dlp/games/models": ["src/app/modules/games/models/game.ts"],
       // Services
       "@dlp/devs/services": ["src/app/modules/developers/services/index.ts"],
-      "@dlp/devs/models": ["src/app/modules/developers/models/developer.ts"]
+      "@dlp/devs/models": ["src/app/modules/developers/models/developer.ts"],
+      // Categories
+      "@dlp/categories/services": [
+        "src/app/modules/categories/services/index.ts"
+      ],
+      "@dlp/categories/models": [
+        "src/app/modules/categories/models/category.ts"
+      ]
     }
   },
   "angularCompilerOptions": {
