@@ -11,11 +11,11 @@ export class AuthService {
   constructor(private _http: HttpClient) {}
 
   register(user: any) {
-    return this._http.post<any>(`${environment.apiUrl}/user/register`, user);
+    return this._http.post(`${environment.apiUrl}/user/register`, user);
   }
 
   login(user: any) {
-    return this._http.post<any>(`${environment.apiUrl}/user/login`, user);
+    return this._http.post(`${environment.apiUrl}/user/login`, user);
   }
 
   // Comprueba si el token esta almacenado

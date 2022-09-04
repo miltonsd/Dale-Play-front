@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
         password: this.form.value.password,
       };
       this._authService.login(user).subscribe({
-        next: (res) => {
+        next: (res: any) => {
           localStorage.setItem('token', res.token);
         },
         error: (err) => {
