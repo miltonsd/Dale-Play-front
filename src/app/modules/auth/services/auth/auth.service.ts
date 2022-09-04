@@ -46,7 +46,6 @@ export class AuthService {
     const payload: any = jwtDecode(token);
     const actualTime = Date.now() / 1000;
     const remainingTime = payload.expiredAt - actualTime;
-    console.log(remainingTime);
     return remainingTime;
   }
 }

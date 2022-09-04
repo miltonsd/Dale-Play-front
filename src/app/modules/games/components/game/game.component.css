@@ -1,8 +1,7 @@
 .card {
-  max-width: 250px;
+  max-width: 240px;
 }
 
-.card-logo {
-  background-image: url("https://via.placeholder.com/50?text=Logo");
-  background-size: cover;
+.button {
+  width: 100%;
 }

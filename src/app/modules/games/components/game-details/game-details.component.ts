@@ -45,7 +45,6 @@ export class GameDetailsComponent implements OnInit {
                           createdAt: res.elemnt.createdAt,
                           updateAt: res.elemnt.updatedAt,
                         };
-                        console.log(this.game);
                       },
                       error: (err) => {
                         console.error(
