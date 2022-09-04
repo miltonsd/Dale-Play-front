@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { GamesService } from '../../services/games.service';
-import { Game } from '../../models/game';
+import { GamesService } from '@dlp/games/services';
+import { Game } from '@dlp/games/models';
 
 @Component({
   selector: 'dlp-store',
@@ -15,9 +15,9 @@ export class StoreComponent implements OnInit {
 
   ngOnInit(): void {
     // Cargar los juegos en la tienda
-    this._gamesService.getGames().subscribe({
-      next: (games) => {
-        this.games = games;
+    this._gamesService.getAllGames().subscribe({
+      next: (res: any) => {
+        this.games = res.elemts;
       },
       error: (err) => {
         console.error(`Código de error ${err.status}: `, err.error.msg);
