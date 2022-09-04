@@ -1,8 +1,7 @@
 .header {
   background-color: #3f51b5;
   color: #fff;
-  height: 44px;
-  padding: 8px 16px;
+  padding: 8px 12%;
   position: fixed;
   z-index: 1000;
   top: 0;
@@ -18,4 +17,15 @@ a:focus {
 
 a:hover {
   background: rgba(0, 0, 0, 0.4);
+}
+
+.logout {
+  background: #f44336c9;
+}
+.logout:hover {
+  background: #f44336;
+}
+
+.nav-spacer {
+  flex: 1 1 auto;
 }

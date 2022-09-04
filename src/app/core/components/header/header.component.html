@@ -1,18 +1,54 @@
-<div class="header mat-elevation-z7">
-  <a mat-button routerLink="/login">
-    <span>Dale Play!</span>
-  </a>
-  <a mat-button routerLink="/store">
-    <span>Tienda</span>
-  </a>
-  <a mat-button routerLink="/users">
-    <span>Perfil</span>
-  </a>
-  <a mat-button routerLink="/admin">
-    <span>Admin</span>
-  </a>
-  <a mat-button (click)="onClick()" >
-    <span>Logout</span>
-  </a>
-
-</div>
+<mat-toolbar class="header mat-elevation-z7">
+      
+  <mat-icon>
+    <span class="material-symbols-rounded">
+      sports_esports
+    </span>
+  </mat-icon>
+  <span>Dale Play!</span>
+  &nbsp;
+  
+  <!-- Muestra los enlaces si el usuario esta loggeado -->
+  <ng-container *ngIf="this._authService.loggedIn(); else loggedIn">
+    
+    <a mat-button routerLink="/store">
+      <span>Tienda</span>
+    </a>
+    &nbsp;
+    
+    <a mat-button routerLink="/users">
+      <span>Perfil</span>
+    </a>
+    &nbsp;
+    
+    <!-- Si el usuario es Admin muestra el enlace -->
+    <ng-container *ngIf="this._authService.getRole() === 1">
+      
+      <a mat-button routerLink="/admin">
+        <span>Admin</span>
+      </a>      
+      
+    </ng-container>
+    
+    <span class="nav-spacer"></span>
+    <a mat-button (click)="onClick()" class="logout">
+      <span>Logout</span>
+    </a>
+    
+  </ng-container>
+      
+  <!-- En caso de que el usuario no este loggeado -->
+  <ng-template #loggedIn>
+    <span class="nav-spacer"></span>
+    <a mat-button routerLink="/login">
+      <span>Login</span>
+    </a>
+    &nbsp;
+        
+    <a mat-button routerLink="/register">
+      <span>Register</span>
+    </a>
+        
+  </ng-template>
+      
+</mat-toolbar>

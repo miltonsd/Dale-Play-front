@@ -8,7 +8,7 @@ import { AuthService } from '@dlp/auth/services';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  constructor(private _authService: AuthService, private _router: Router) {}
+  constructor(public _authService: AuthService, private _router: Router) {}
 
   ngOnInit(): void {}
 
