@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 import { environment } from 'src/environments/environment';
 
@@ -9,39 +9,26 @@ import { environment } from 'src/environments/environment';
 export class DevelopersService {
   constructor(private _http: HttpClient) {}
 
-  // Almaceno el token para enviarlo al header
-  token = localStorage.getItem('token')?.toString() || '';
-  headers = new HttpHeaders({ 'user-token': this.token });
-
   getDeveloper(devId: number) {
-    return this._http.get(`${environment.apiUrl}/developer/${devId}`, {
-      headers: this.headers,
-    });
+    return this._http.get(`${environment.apiUrl}/developer/${devId}`);
   }
 
   getAllDevelopers() {
-    return this._http.get(`${environment.apiUrl}/developer`, {
-      headers: this.headers,
-    });
+    return this._http.get(`${environment.apiUrl}/developer`);
   }
 
   createDeveloper(developer: any) {
-    return this._http.post(`${environment.apiUrl}/developer`, developer, {
-      headers: this.headers,
-    });
+    return this._http.post(`${environment.apiUrl}/developer`, developer);
   }
 
   deleteDeveloper(devId: number) {
-    return this._http.delete(`${environment.apiUrl}/developer/${devId}`, {
-      headers: this.headers,
-    });
+    return this._http.delete(`${environment.apiUrl}/developer/${devId}`);
   }
 
   updateDeveloper(devId: number, developer: any) {
     return this._http.patch(
       `${environment.apiUrl}/developer/${devId}`,
-      developer,
-      { headers: this.headers }
+      developer
     );
   }
 }

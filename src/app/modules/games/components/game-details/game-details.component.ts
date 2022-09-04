@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
-import { Game } from '../../models/game';
-import { GamesService } from '../../services/games.service';
+import { GamesService } from '@dlp/games/services';
+import { DevelopersService } from '@dlp/devs/services';
 
 @Component({
   selector: 'dlp-game-details',
@@ -10,10 +10,11 @@ import { GamesService } from '../../services/games.service';
   styleUrls: ['./game-details.component.css'],
 })
 export class GameDetailsComponent implements OnInit {
-  game!: Game;
+  game: any = {};
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _gamesService: GamesService,
+    private _developesrService: DevelopersService,
     private _router: Router
   ) {}
 
@@ -23,7 +24,31 @@ export class GameDetailsComponent implements OnInit {
       if (params['gameId']) {
         this._gamesService.getGame(params['gameId']).subscribe({
           next: (res: any) => {
-            this.game = res.elemnt;
+            this._developesrService
+              .getDeveloper(res.elemnt.idDeveloper)
+              .subscribe({
+                next: (resDev: any) => {
+                  this.game = {
+                    id: res.elemnt.id,
+                    name: res.elemnt.name,
+                    description: res.elemnt.description,
+                    image: res.elemnt.image,
+                    developer: resDev.elemnt.name,
+                    idCategory: res.elemnt.idCategory,
+                    valoration: res.elemnt.valoration,
+                    createdAt: res.elemnt.createdAt,
+                    updateAt: res.elemnt.updatedAt,
+                  };
+                  console.log(this.game);
+                },
+                error: (err) => {
+                  console.error(
+                    `Código de error ${err.status}: `,
+                    err.error.msg
+                  );
+                  this._router.navigate(['/store']);
+                },
+              });
           },
           error: (err) => {
             console.error(`Código de error ${err.status}: `, err.error.msg);
