@@ -15,7 +15,7 @@ export class GameDetailsComponent implements OnInit {
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _gamesService: GamesService,
-    private _developesrService: DevelopersService,
+    private _developersService: DevelopersService,
     private _categoriesService: CategoriesService,
     private _router: Router
   ) {}
@@ -26,7 +26,7 @@ export class GameDetailsComponent implements OnInit {
       if (params['gameId']) {
         this._gamesService.getGame(params['gameId']).subscribe({
           next: (res: any) => {
-            this._developesrService
+            this._developersService
               .getDeveloper(res.elemnt.idDeveloper)
               .subscribe({
                 next: (resDev: any) => {

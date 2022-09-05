@@ -3,10 +3,12 @@ import { Component, OnInit } from '@angular/core';
 import { UsersService } from '@dlp/users/services';
 import { AuthService } from '@dlp/auth/services';
 import { GamesService } from '@dlp/games/services';
-import { Game } from '@dlp/games/models';
+import { GameUser } from '@dlp/games/models';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { DevelopersService } from '@dlp/devs/services';
+import { CategoriesService } from '@dlp/categories/services';
 
 @Component({
   selector: 'dlp-profile',
@@ -15,7 +17,7 @@ import { MatSort } from '@angular/material/sort';
 })
 export class ProfileComponent implements OnInit {
   user: any = {};
-  games: Game[] = [];
+  games: GameUser[] = [];
 
   displayedColumns: string[] = [
     'image',
@@ -26,17 +28,20 @@ export class ProfileComponent implements OnInit {
     'acciones',
   ];
 
-  dataSource!: MatTableDataSource<Game>;
+  dataSource!: MatTableDataSource<GameUser>;
 
   constructor(
     private _usersService: UsersService,
     private _authService: AuthService,
-    private _gamesService: GamesService
+    private _gamesService: GamesService,
+    private _developersService: DevelopersService,
+    private _categoriesService: CategoriesService
   ) {}
 
   ngOnInit(): void {
     // Obtiene el id del usuario loggeado
     const userId = this._authService.getCurrentUserId();
+
     // Cargar el usuario
     this._usersService.getUser(userId).subscribe({
       next: (res: any) => {
@@ -48,19 +53,51 @@ export class ProfileComponent implements OnInit {
           email: res.elemnt.email,
           createdAt: res.elemnt.createdAt.slice(0, 10),
         };
-        console.log('TESTING');
+      },
+      error: (err) => {
+        console.error(`Código de error ${err.status}: `, err.error.msg);
+      },
+    });
 
-        // Busco los juegos que posee el usuario
-        this._gamesService.getGamesByUser(userId).subscribe({
-          next: (resGame: any) => {
-            console.log('TESTING 2');
-            console.log(resGame.games);
-            this.games = resGame.games;
-            this.dataSource = new MatTableDataSource(this.games);
-          },
-          error: (err) => {
-            console.error(`Código de error ${err.status}: `, err.error.msg);
-          },
+    // Busco los juegos que posee el usuario
+    this._gamesService.getGamesByUser(userId).subscribe({
+      next: (resGame: any) => {
+        const games = resGame.games;
+
+        // Itera en cada uno de los juegos
+        games.forEach((game: any) => {
+          // Busca el desarrollador del juego
+          this._developersService.getDeveloper(game.idDeveloper).subscribe({
+            next: (resDev: any) => {
+              // Busca la categoría del juego
+              this._categoriesService.getCategory(game.idCategory).subscribe({
+                next: (resCat: any) => {
+                  // Prepara los datos del juego
+                  const juego = {
+                    id: game.id,
+                    name: game.name,
+                    image: game.image,
+                    developer: resDev.elemnt.name,
+                    category: resCat.elemnt.name,
+                    valoration: game.valoration,
+                  };
+                  // Guarda la info del juego en el array
+                  this.games.push(juego);
+                  // Crea los datos de la tabla
+                  this.dataSource = new MatTableDataSource(this.games);
+                },
+                error: (err) => {
+                  console.error(
+                    `Código de error ${err.status}: `,
+                    err.error.msg
+                  );
+                },
+              });
+            },
+            error: (err) => {
+              console.error(`Código de error ${err.status}: `, err.error.msg);
+            },
+          });
         });
       },
       error: (err) => {

@@ -9,3 +9,12 @@ export interface Game {
   createdAt: Date;
   updatedAt: Date;
 }
+
+export interface GameUser {
+  id: number;
+  name: string;
+  image: string;
+  developer: string;
+  category: string;
+  valoration: number;
+}
