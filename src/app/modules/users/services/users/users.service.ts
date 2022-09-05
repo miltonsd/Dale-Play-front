@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs';
-import { User } from '../models/User';
+import { User } from '@dlp/users/models';
 
 @Injectable({
   providedIn: 'root',
