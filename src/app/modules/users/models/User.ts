@@ -5,7 +5,8 @@ export interface User {
   email: string;
   password: string;
   idRole: number;
-  ssed: string;
+  seed: string;
+  image: string;
   createdAt: Date;
   updatedAt: Date;
 }

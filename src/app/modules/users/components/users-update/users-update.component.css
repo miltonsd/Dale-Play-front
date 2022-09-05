@@ -1,0 +1,21 @@
+.register {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 79.7vh;
+}
+
+.register-content {
+  background-color: antiquewhite; /* Provisorio */
+  width: 350px;
+  padding: 2%;
+  border-radius: 5%;
+}
+
+.register-input {
+  width: 100%;
+}
+
+.register-submit {
+  margin: 3% 0%;
+}

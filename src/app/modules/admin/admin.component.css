@@ -10,13 +10,13 @@
   font-size: 20px;
 }
 
-.games-content {
+.admin-content {
   display: grid;
-  grid-template-areas: "titulo" "games";
+  grid-template-areas: "titulo" "tabla";
   grid-template-rows: 12vh auto;
+  grid-template-columns: 100%;
   align-items: center;
   justify-content: center;
-  margin-bottom: 8%;
 }
 
 .titulo {
@@ -27,10 +27,8 @@
   line-height: 48px;
 }
 
-.cards {
-  grid-area: games;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+.tabla {
+  grid-area: tabla;
   gap: 2rem;
   min-height: 100vh;
 }

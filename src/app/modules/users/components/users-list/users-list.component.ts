@@ -1,5 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import {
+  MatDialog,
+  MatDialogRef,
+  MAT_DIALOG_DATA,
+} from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { UserImage } from '@dlp/users/models';
 import { RolesService } from 'src/app/modules/roles/services/roles.service';
 import { UsersService } from '../../services/users/users.service';
@@ -26,14 +32,14 @@ export class UsersListComponent implements OnInit {
 
   constructor(
     private _usersService: UsersService,
-    private _rolesService: RolesService
+    private _rolesService: RolesService,
+    private _router: Router
   ) {}
 
   ngOnInit(): void {
     this._usersService.getAllUsers().subscribe({
       next: (res: any) => {
-        console.log(res.elemts);
-        res.elemts.forEach((user: any) => {
+        res.forEach((user: any) => {
           this._rolesService.getRole(user.idRole).subscribe({
             next: (resRole: any) => {
               this._usersService.getImage(user.seed).subscribe({
@@ -61,6 +67,22 @@ export class UsersListComponent implements OnInit {
       },
       error: (err) => {
         console.error(err);
+      },
+    });
+  }
+
+  onDelete(userId: number) {
+    console.log('CLICK');
+    console.log(userId);
+    this._usersService.deleteUser(userId).subscribe({
+      next: (res: any) => {
+        console.log(res);
+      },
+      error: (err) => {
+        console.error(err);
+      },
+      complete: () => {
+        this._router.navigate(['/admin/']);
       },
     });
   }
