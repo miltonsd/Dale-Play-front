@@ -18,7 +18,7 @@ const routes: Routes = [
       import('./modules/games/games.module').then((m) => m.GamesModule),
   },
   {
-    path: 'users',
+    path: 'profile',
     loadChildren: () =>
       import('./modules/users/users.module').then((m) => m.UsersModule),
   },
@@ -35,7 +35,13 @@ const routes: Routes = [
         (m) => m.DevelopersModule
       ),
   },
-  { path: 'categories', loadChildren: () => import('./modules/categories/categories.module').then(m => m.CategoriesModule) },
+  {
+    path: 'categories',
+    loadChildren: () =>
+      import('./modules/categories/categories.module').then(
+        (m) => m.CategoriesModule
+      ),
+  },
   {
     path: '**',
     component: NotfoundComponent,

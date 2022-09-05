@@ -44,7 +44,9 @@
       ],
       "@dlp/categories/models": [
         "src/app/modules/categories/models/category.ts"
-      ]
+      ],
+      // Users
+      "@dlp/users/views": ["src/app/modules/users/views/index.ts"]
     }
   },
   "angularCompilerOptions": {
