@@ -4,8 +4,7 @@
     <mat-card-title>{{game.name}}</mat-card-title>
   </mat-card-header>
         
-    <!-- <img mat-card-image [src]="game.image" alt="{{game.name}} cover"> -->
-    <img mat-card-image src="https://via.placeholder.com/250?text=Game+placeholder" alt="Game placeholder">
+    <img mat-card-image [src]="game.image" alt="{{game.name}} cover">
           
   <mat-card-actions >
     <a mat-flat-button color="accent" routerLink="/store/game/{{game.id}}" class="button">Ver detalles</a>
