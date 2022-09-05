@@ -24,4 +24,8 @@ export class UsersService {
   updateUser(userId: number, user: any) {
     return this._http.patch(`${environment.apiUrl}/user/${userId}`, user);
   }
+
+  getImage(seed: any) {
+    return this._http.get(`https://randomuser.me/api/?seed=${seed}`);
+  }
 }

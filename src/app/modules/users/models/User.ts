@@ -5,8 +5,21 @@ export interface User {
   email: string;
   password: string;
   idRole: number;
-  resetToken: string;
-  refreshToken: string;
+  ssed: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface UserImage {
+  id: number;
+  name: string;
+  surname: string;
+  email: string;
+  password: string;
+  idRole: number;
+  role: string;
+  ssed: string;
+  image: string;
   createdAt: Date;
   updatedAt: Date;
 }

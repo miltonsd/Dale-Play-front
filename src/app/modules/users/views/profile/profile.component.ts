@@ -52,11 +52,11 @@ export class ProfileComponent implements OnInit {
       next: (res: any) => {
         // Guardo la info del usuario
         this.user = {
-          id: res.elemnt.id,
-          name: res.elemnt.name,
-          surname: res.elemnt.surname,
-          email: res.elemnt.email,
-          createdAt: res.elemnt.createdAt.slice(0, 10),
+          id: res.id,
+          name: res.name,
+          surname: res.surname,
+          email: res.email,
+          createdAt: res.createdAt.slice(0, 10),
         };
       },
       error: (err) => {
