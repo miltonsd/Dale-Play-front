@@ -1,1 +1,61 @@
-<p>admin works!</p>
+<mat-sidenav-container>
+  <!-- Barra lateral -->
+  <mat-sidenav mode="side" opened class="games-filter">
+    &nbsp;
+
+    <mat-divider></mat-divider>
+    
+    <mat-nav-list>
+      <a mat-list-item routerLink="/">
+        <mat-icon>
+          <span class="material-symbols-outlined">
+            person
+          </span>
+        </mat-icon>Usuarios
+      </a>
+    </mat-nav-list>
+    
+    <mat-nav-list>
+      <a mat-list-item routerLink="/">
+        <mat-icon>
+          <span class="material-symbols-outlined">
+            videogame_asset
+          </span>
+        </mat-icon>Juegos
+      </a>
+    </mat-nav-list>
+    
+    <mat-nav-list>
+      <a mat-list-item routerLink="/">
+        <mat-icon>
+          <span class="material-symbols-outlined">
+            bookmark
+          </span>
+        </mat-icon>Categorías
+      </a>
+    </mat-nav-list>
+
+    <mat-nav-list>
+      <a mat-list-item routerLink="/">
+        <mat-icon>
+          <span class="material-symbols-outlined">
+            code_blocks
+          </span>
+        </mat-icon>Desarrolladores
+      </a>
+    </mat-nav-list>
+  
+  </mat-sidenav>
+  
+  <mat-sidenav-content>
+    <!-- Contenido -->
+    <div class="games-content"> 
+      <h1 class="titulo">Admin</h1>
+      <div class="cards">
+        <!-- <section class="card" *ngFor="let game of games">
+          <dlp-game [game]="game"></dlp-game>
+        </section> -->
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
