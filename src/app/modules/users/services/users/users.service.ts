@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { environment } from 'src/environments/environment';
-import { map } from 'rxjs';
-import { User } from '@dlp/users/models';
 
 @Injectable({
   providedIn: 'root',
@@ -15,31 +13,19 @@ export class UsersService {
   token = localStorage.getItem('token')?.toString() || '';
   headers = new HttpHeaders({ 'user-token': this.token });
 
-  getUsers() {
-    return this._http
-      .get(`${environment.apiUrl}/user/`, { headers: this.headers })
-      .pipe(
-        map((response: any) => {
-          const users: User[] = [];
-          if (response.elemts) {
-            response.elemts.map((userItem: any) => {
-              const user: User = {
-                id: userItem.id || 0,
-                name: userItem.name || '',
-                surname: userItem.surname || '',
-                email: userItem.email || '',
-                password: userItem.password || '',
-                idRole: userItem.idRole || 0,
-                resetToken: userItem.resetToken || '',
-                refreshToken: userItem.refreshToken || '',
-                createdAt: userItem.createdAt || '',
-                updatedAt: userItem.updatedAt || '',
-              };
-              users.push(user);
-            });
-          }
-          return users;
-        })
-      );
+  getUser(userId: number) {
+    return this._http.get(`${environment.apiUrl}/user/${userId}`);
+  }
+
+  getAllUsers() {
+    return this._http.get(`${environment.apiUrl}/user/`);
+  }
+
+  deleteUser(userId: number) {
+    return this._http.delete(`${environment.apiUrl}/user/${userId}`);
+  }
+
+  updateUser(userId: number, user: any) {
+    return this._http.patch(`${environment.apiUrl}/user/${userId}`, user);
   }
 }
