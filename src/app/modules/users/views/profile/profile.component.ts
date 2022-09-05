@@ -41,6 +41,7 @@ export class ProfileComponent implements OnInit {
   ) {}
 
   @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngOnInit(): void {
     // Obtiene el id del usuario loggeado
@@ -99,6 +100,7 @@ export class ProfileComponent implements OnInit {
                       data.category.toLowerCase().includes(filter)
                     );
                   };
+                  this.dataSource.paginator = this.paginator;
                 },
                 error: (err) => {
                   console.error(
