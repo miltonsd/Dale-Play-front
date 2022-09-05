@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 
 import { UsersService } from '@dlp/users/services';
 import { AuthService } from '@dlp/auth/services';
@@ -30,6 +30,10 @@ export class ProfileComponent implements OnInit {
 
   dataSource!: MatTableDataSource<GameUser>;
 
+  sortedData!: GameUser[];
+
+  // dataSource = new MatTableDataSource(this.games);
+
   constructor(
     private _usersService: UsersService,
     private _authService: AuthService,
@@ -37,6 +41,8 @@ export class ProfileComponent implements OnInit {
     private _developersService: DevelopersService,
     private _categoriesService: CategoriesService
   ) {}
+
+  @ViewChild(MatSort) sort!: MatSort;
 
   ngOnInit(): void {
     // Obtiene el id del usuario loggeado
@@ -85,6 +91,8 @@ export class ProfileComponent implements OnInit {
                   this.games.push(juego);
                   // Crea los datos de la tabla
                   this.dataSource = new MatTableDataSource(this.games);
+                  // Agrego para que se puedan ordenar los datos
+                  this.dataSource.sort = this.sort;
                 },
                 error: (err) => {
                   console.error(
