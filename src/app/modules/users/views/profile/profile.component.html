@@ -13,8 +13,8 @@
         
         <!-- Filtro -->
         <mat-form-field appearance="standard">
-          <mat-label>Filter</mat-label>
-          <input matInput  placeholder="Ex. Mia" #input>
+          <mat-label>Filtrar</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Ingrese el nombre del juego, del desarrollador o de la categoría" #input>
         </mat-form-field>
         
         <!-- Tabla -->

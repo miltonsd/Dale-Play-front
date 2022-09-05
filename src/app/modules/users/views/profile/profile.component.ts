@@ -32,8 +32,6 @@ export class ProfileComponent implements OnInit {
 
   sortedData!: GameUser[];
 
-  // dataSource = new MatTableDataSource(this.games);
-
   constructor(
     private _usersService: UsersService,
     private _authService: AuthService,
@@ -93,6 +91,14 @@ export class ProfileComponent implements OnInit {
                   this.dataSource = new MatTableDataSource(this.games);
                   // Agrego para que se puedan ordenar los datos
                   this.dataSource.sort = this.sort;
+                  // Filtro personalizado (Nombre Juego, Desarrollador, Categoría)
+                  this.dataSource.filterPredicate = (data, filter) => {
+                    return (
+                      data.name.toLowerCase().includes(filter) ||
+                      data.developer.toLowerCase().includes(filter) ||
+                      data.category.toLowerCase().includes(filter)
+                    );
+                  };
                 },
                 error: (err) => {
                   console.error(
@@ -112,5 +118,10 @@ export class ProfileComponent implements OnInit {
         console.error(`Código de error ${err.status}: `, err.error.msg);
       },
     });
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }
