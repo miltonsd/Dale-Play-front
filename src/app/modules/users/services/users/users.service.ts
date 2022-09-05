@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 import { environment } from 'src/environments/environment';
 
@@ -8,10 +8,6 @@ import { environment } from 'src/environments/environment';
 })
 export class UsersService {
   constructor(private _http: HttpClient) {}
-
-  // Almaceno el token para enviarlo al header
-  token = localStorage.getItem('token')?.toString() || '';
-  headers = new HttpHeaders({ 'user-token': this.token });
 
   getUser(userId: number) {
     return this._http.get(`${environment.apiUrl}/user/${userId}`);

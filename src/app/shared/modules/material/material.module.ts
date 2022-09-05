@@ -19,6 +19,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
 
 const modules = [
   MatToolbarModule,
@@ -38,6 +40,8 @@ const modules = [
   MatProgressSpinnerModule,
   MatMenuModule,
   MatPaginatorModule,
+  MatTableModule,
+  MatSortModule,
 ];
 @NgModule({
   declarations: [],

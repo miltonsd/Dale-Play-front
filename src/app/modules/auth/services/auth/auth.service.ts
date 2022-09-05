@@ -30,9 +30,18 @@ export class AuthService {
 
   // Comprueba el rol del usuario al hacer login
   getRole(): number {
-    const token = this.getToken();
-    const payload: any = jwtDecode(token);
+    const payload: any = this.getDecodedToken();
     return payload.role;
+  }
+
+  getCurrentUserId(): number {
+    const payload: any = this.getDecodedToken();
+    return payload.userId;
+  }
+
+  // Obtener el payload del token
+  getDecodedToken() {
+    return jwtDecode(this.getToken());
   }
 
   // Obtiene el token
@@ -42,8 +51,7 @@ export class AuthService {
 
   // Evalua que el tiempo de sesion del token no haya expirado
   expiredToken(): number {
-    const token = this.getToken();
-    const payload: any = jwtDecode(token);
+    const payload: any = this.getDecodedToken();
     const actualTime = Date.now() / 1000;
     const remainingTime = payload.expiredAt - actualTime;
     return remainingTime;

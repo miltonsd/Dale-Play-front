@@ -29,15 +29,15 @@ export class GamesService {
     return this._http.patch(`${environment.apiUrl}/game/${gameId}`, game);
   }
 
-  getGamesByCategory(gameId: number) {
-    return this._http.get(`${environment.apiUrl}/game/category/${gameId}`);
+  getGamesByCategory(categoryId: number) {
+    return this._http.get(`${environment.apiUrl}/game/category/${categoryId}`);
   }
 
-  getGamesByDeveloper(gameId: number) {
-    return this._http.get(`${environment.apiUrl}/game/developer/${gameId}`);
+  getGamesByDeveloper(devId: number) {
+    return this._http.get(`${environment.apiUrl}/game/developer/${devId}`);
   }
 
-  getGamesByUser(gameId: number) {
-    return this._http.get(`${environment.apiUrl}/game/user/${gameId}`);
+  getGamesByUser(userId: number) {
+    return this._http.get(`${environment.apiUrl}/game/user/${userId}`);
   }
 }
