@@ -4,21 +4,21 @@
 
     <mat-form-field appearance="outline" class="register-input">
       <mat-label>Ingrese su nombre</mat-label>
-      <input matInput formControlName="name" placeholder="Nombre actual: {{user.name}}" tabindex="1">
+      <input matInput formControlName="name" placeholder="Nombre" tabindex="1">
       <mat-error *ngIf="form.controls.name.hasError('required')">El nombre es necesario</mat-error>
       <mat-error *ngIf="form.controls.name.hasError('pattern')">El nombre no puede contener números</mat-error>
     </mat-form-field>
     
     <mat-form-field appearance="outline" class="register-input">
       <mat-label>Ingrese su apellido</mat-label>
-      <input matInput formControlName="surname" placeholder="Apellido actual: {{user.surname}}" required tabindex="2">
+      <input matInput formControlName="surname" placeholder="Apellido" required tabindex="2">
       <mat-error *ngIf="form.controls.surname.hasError('required')">El apellido es necesario</mat-error>
       <mat-error *ngIf="form.controls.surname.hasError('pattern')">El apellido no puede contener números</mat-error>
     </mat-form-field>
     
     <mat-form-field appearance="outline" class="register-input">
       <mat-label>Ingrese su email</mat-label>
-      <input matInput formControlName="email" placeholder="Email actual: {{user.email}}" tabindex="3">
+      <input matInput formControlName="email" placeholder="Email" tabindex="3">
       <mat-error *ngIf="form.controls.email.hasError('required')">El email es necesario</mat-error>
       <mat-error *ngIf="form.controls.email.hasError('email')">El email debe tener un formato válido</mat-error>
       <mat-error *ngIf="form.controls.email.hasError('minlength')">El email debe contener 5 o más caracteres</mat-error>
@@ -26,7 +26,7 @@
     
     <mat-form-field appearance="outline" class="register-input">
       <mat-label>Elija el rol</mat-label>
-      <mat-select formControlName="idRole" name="idRole">
+      <mat-select formControlName="idRole">
         <mat-option *ngFor="let rol of roles" [value]="rol.id">
           {{rol.name}}
         </mat-option>
