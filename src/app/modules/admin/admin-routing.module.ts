@@ -7,6 +7,9 @@ import { AdminGuard, AuthGuard } from '@dlp/shared/guards';
 import { UsersListComponent } from '../users/components/users-list/users-list.component';
 import { UsersCreateComponent } from '../users/components/users-create/users-create.component';
 import { UsersUpdateComponent } from '../users/components/users-update/users-update.component';
+import { GamesListComponent } from '../games/components/games-list/games-list.component';
+import { GamesCreateComponent } from '../games/components/games-create/games-create.component';
+import { GamesUpdateComponent } from '../games/components/games-update/games-update.component';
 
 const routes: Routes = [
   {
@@ -25,6 +28,18 @@ const routes: Routes = [
       {
         path: 'users/edit/:userId',
         component: UsersUpdateComponent,
+      },
+      {
+        path: 'games',
+        component: GamesListComponent,
+      },
+      {
+        path: 'games/create',
+        component: GamesCreateComponent,
+      },
+      {
+        path: 'games/edit/:gameId',
+        component: GamesUpdateComponent,
       },
     ],
   },
