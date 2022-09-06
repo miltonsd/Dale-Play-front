@@ -1,0 +1,23 @@
+<div class="login">
+  <form [formGroup]="form" class="login-content" (submit)="onSubmit()">
+    <h1>CONTACTO</h1>
+    
+    <mat-form-field appearance="outline" class="login-input">
+      <mat-label>Ingrese su email</mat-label>
+      <input matInput formControlName="email" placeholder="Email" tabindex="1">
+      <mat-error *ngIf="form.controls.email.hasError('required')">El email es necesario</mat-error>
+      <mat-error *ngIf="form.controls.email.hasError('email')">El email debe tener un formato válido</mat-error>
+      <mat-error *ngIf="form.controls.email.hasError('minlength')">El email debe contener 5 o más caracteres</mat-error>
+    </mat-form-field>
+    
+    <mat-form-field appearance="outline" class="login-input">
+      <mat-label>Escriba un mensaje</mat-label>
+      <input matInput formControlName="message" placeholder="Escribe un mensaje" tabindex="2">
+      </mat-form-field>
+      <mat-error *ngIf="form.controls.message.hasError('required')">Se debe escribir un mensaje</mat-error>    
+    <button type="submit" mat-flat-button color="primary" class="login-submit" tabindex="3">
+      Enviar
+    </button>
+    
+  </form>
+</div>
