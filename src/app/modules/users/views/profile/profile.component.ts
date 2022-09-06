@@ -9,6 +9,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { DevelopersService } from '@dlp/devs/services';
 import { CategoriesService } from '@dlp/categories/services';
+import { User } from '@dlp/users/models';
 
 @Component({
   selector: 'dlp-profile',
@@ -16,7 +17,7 @@ import { CategoriesService } from '@dlp/categories/services';
   styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit {
-  user: any = {};
+  user!: User;
   games: GameUser[] = [];
 
   displayedColumns: string[] = [
@@ -51,13 +52,14 @@ export class ProfileComponent implements OnInit {
     this._usersService.getUser(userId).subscribe({
       next: (res: any) => {
         // Guardo la info del usuario
-        this.user = {
-          id: res.id,
-          name: res.name,
-          surname: res.surname,
-          email: res.email,
-          createdAt: res.createdAt.slice(0, 10),
-        };
+        // this.user = {
+        //   id: res.id,
+        //   name: res.name,
+        //   surname: res.surname,
+        //   email: res.email,
+        //   createdAt: res.createdAt.slice(0, 10),
+        // };
+        this.user = res;
       },
       error: (err) => {
         console.error(`Código de error ${err.status}: `, err.error.msg);

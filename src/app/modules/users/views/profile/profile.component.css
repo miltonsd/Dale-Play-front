@@ -33,3 +33,20 @@ mat-form-field {
 .cover {
   max-width: 80px;
 }
+
+.grid-profile {
+  display: grid;
+  grid-template-areas: "photo info";
+  grid-template-columns: 12% auto;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-photo {
+  grid-area: photo;
+  max-height: 130px;
+}
+
+.profile-info {
+  grid-area: info;
+}

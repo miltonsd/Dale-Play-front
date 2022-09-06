@@ -2,10 +2,15 @@
   <div class="profile">  
 
     <!-- Info del usuario-->
-    <h1 class="titulo">{{user.name}} {{user.surname}}</h1>
-    <p> Email: {{user.email}}</p>
-    <p> Registrado desde: {{user.createdAt}}</p>
-    
+    <div class="grid-profile">
+      <img [src]="user.image" alt="{{user.name}}'s profile photo" class="profile-photo">
+      <div class="profile-info">
+        <h1 class="titulo">{{user.name}} {{user.surname}}</h1>
+        <h4> Registrado desde: {{user.createdAt}}</h4>
+        <h4> Email: {{user.email}}</h4>
+      </div>
+    </div>
+    &nbsp;
     <article class="games-library">
       <h1>Mi Biblioteca</h1>
 
