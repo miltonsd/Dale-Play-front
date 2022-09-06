@@ -14,10 +14,10 @@ export class StoreComponent implements OnInit {
   constructor(private _gamesService: GamesService) {}
 
   ngOnInit(): void {
-    // Cargar los juegos en la tienda
+    // Busca los juegos para cargarlos en la tienda
     this._gamesService.getAllGames().subscribe({
-      next: (res: any) => {
-        this.games = res.elemts;
+      next: (response: any) => {
+        this.games = response;
       },
       error: (err) => {
         console.error(`Código de error ${err.status}: `, err.error.msg);

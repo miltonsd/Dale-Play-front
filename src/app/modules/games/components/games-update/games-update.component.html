@@ -1,0 +1,50 @@
+<div class="register">
+  <form [formGroup]="form" class="register-content" (submit)="onSubmit()">
+    <h1>EDITAR JUEGO</h1>
+
+    <mat-form-field appearance="outline" class="register-input">
+      <mat-label>Ingrese nombre</mat-label>
+      <input matInput formControlName="name" placeholder="Nombre" tabindex="1">
+      <mat-error *ngIf="form.controls.name.hasError('required')">El nombre es necesario</mat-error>
+    </mat-form-field>
+    
+    <mat-form-field appearance="outline" class="register-input">
+      <mat-label>Ingrese descripciónn</mat-label>
+      <input matInput formControlName="description" placeholder="Apellido" required tabindex="2">
+      <mat-error *ngIf="form.controls.description.hasError('required')">El apellido es necesario</mat-error>
+      <mat-error *ngIf="form.controls.description.hasError('pattern')">El apellido no puede contener números</mat-error>
+    </mat-form-field>
+    
+    <mat-form-field appearance="outline" class="register-input">
+      <mat-label>Ingrese valoration</mat-label>
+      <input matInput formControlName="valoration" placeholder="valoration" tabindex="3">
+      <mat-error *ngIf="form.controls.valoration.hasError('required')">El email es necesario</mat-error>
+      <mat-error *ngIf="form.controls.valoration.hasError('pattern')">El apellido no puede contener números</mat-error>
+      </mat-form-field>
+    
+      <mat-form-field appearance="outline" class="register-input">
+        <mat-label>Elija categoria</mat-label>
+        <mat-select formControlName="idCategory">
+          <mat-option *ngFor="let category of categories" [value]="category.id">
+            {{category.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    
+      <mat-form-field appearance="outline" class="register-input">
+        <mat-label>Elija desarrollador</mat-label>
+        <mat-select formControlName="idDeveloper">
+          <mat-option *ngFor="let dev of developers" [value]="dev.id">
+            {{dev.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+    <button type="submit" mat-flat-button color="primary" class="register-submit" tabindex="6">
+      Confirmar edición
+    </button>
+
+    
+  </form>
+</div>

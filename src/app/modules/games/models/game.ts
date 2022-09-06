@@ -4,7 +4,9 @@ export interface Game {
   image: string;
   valoration: number;
   idCategory: number;
+  nameCategory: string;
   idDeveloper: number;
+  nameDeveloper: string;
   description: string;
   createdAt: Date;
   updatedAt: Date;
