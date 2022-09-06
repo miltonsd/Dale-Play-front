@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Game } from '@dlp/games/models';
@@ -36,7 +37,7 @@ export class GamesListComponent implements OnInit {
         console.error(`Código de error ${err.status}: `, err.error.msg);
       },
       complete: () => {
-        console.log(this.games);
+        // Carga los juegos en la tabla
         this.dataSource = new MatTableDataSource(this.games);
       },
     });

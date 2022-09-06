@@ -13,8 +13,8 @@ import { UsersService } from '../../services/users/users.service';
 })
 export class UsersUpdateComponent implements OnInit {
   user!: User;
-  userId!: number;
   roles: Role[] = [];
+
   form = new FormGroup({
     name: new FormControl('', {
       validators: [Validators.required, Validators.pattern('[a-zA-Z ]*')],
@@ -39,6 +39,27 @@ export class UsersUpdateComponent implements OnInit {
     private _rolesService: RolesService
   ) {}
 
+  ngOnInit(): void {
+    const userId = Number(this._activatedRoute.snapshot.paramMap.get('userId'));
+    // Busca el usuario
+    this._usersService.getUser(userId).subscribe({
+      next: (response: any) => {
+        console.log(response);
+        this.user = response;
+      },
+      error: (err) => {
+        console.error(`Código de error ${err.status}: `, err.error.msg);
+        this._router.navigate(['/admin/users']);
+      },
+    });
+    // Busca los roles
+    this._rolesService.getAllRoles().subscribe({
+      next: (response: any) => {
+        this.roles = response.elemts;
+      },
+    });
+  }
+
   onSubmit() {
     if (this.form.valid) {
       const user = {
@@ -47,7 +68,7 @@ export class UsersUpdateComponent implements OnInit {
         email: this.form.value.email || this.user.email,
         idRole: this.form.value.idRole || this.user.idRole,
       };
-      this._usersService.updateUser(this.userId, user).subscribe({
+      this._usersService.updateUser(this.user.id, user).subscribe({
         next: (res: any) => {
           console.log(res.msg);
         },
@@ -61,23 +82,5 @@ export class UsersUpdateComponent implements OnInit {
     } else {
       this.form.markAllAsTouched();
     }
-  }
-
-  ngOnInit(): void {
-    this._activatedRoute.params.subscribe((params: Params) => {
-      if (params['userId']) {
-        this.userId = params['userId'];
-        this._usersService.getUser(this.userId).subscribe({
-          next: (res: any) => {
-            this.user = res;
-          },
-        });
-      }
-    });
-    this._rolesService.getAllRoles().subscribe({
-      next: (resRole: any) => {
-        this.roles = resRole.elemts;
-      },
-    });
   }
 }

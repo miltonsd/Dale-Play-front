@@ -5,6 +5,7 @@ export interface User {
   email: string;
   password: string;
   idRole: number;
+  roleName: string;
   seed: string;
   image: string;
   createdAt: Date;
