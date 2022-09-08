@@ -1,0 +1,91 @@
+<!-- Filtro (si la tabla lo requiere) -->
+<mat-form-field appearance="standard" class="filtro">
+  <mat-label>Filtrar</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Filtrar" #input>
+</mat-form-field>
+
+<!-- Tabla -->
+<table mat-table [dataSource]="dataSource" matSort class="tabla mat-elevation-z8">
+  
+  <!-- Columnas -->
+  <ng-container *ngFor="let tableColumn of tableColumns" [matColumnDef]="tableColumn.name">
+
+    <!-- Si se puede ordenar la columna -->
+    <ng-container *ngIf="tableColumn.isSortable; else notSortable">
+      <th mat-header-cell *matHeaderCellDef [mat-sort-header]="tableColumn.dataKey">
+        {{tableColumn.name}}
+      </th>
+    </ng-container>
+
+    <!-- En caso de que no se pueda ordenar la columna -->
+    <ng-template #notSortable>
+      <th mat-header-cell *matHeaderCellDef>
+        {{tableColumn.name}}
+      </th>
+    </ng-template>
+    
+    <!-- Datos de la columna -->
+        
+    <!-- Si el contenido de la celda tiene botones -->
+    <ng-container *ngIf="tableColumn.dataKey === 'actionButtons'">
+      <td mat-cell *matCellDef="let row">
+        
+        <!-- Si existe botón de 'Ver detalles' -->
+        <ng-container *ngIf="tableColumn.showDetailsButton">
+          <a mat-flat-button color="primary" routerLink="{{tableColumn.detailsUrl}}{{row.id}}" class="boton">
+            Ver detalles
+          </a>
+        </ng-container>
+          
+        <!-- Si existe botón de 'Editar' -->        
+        <ng-container *ngIf="tableColumn.editButton">
+          <a mat-flat-button color="primary" routerLink="{{tableColumn.editUrl}}{{row.id}}" class="boton">
+            <mat-icon>
+              <span class="material-symbols-outlined">edit</span>
+            </mat-icon>
+            Editar
+          </a>
+        </ng-container>
+          
+        <!-- Si existe botón de 'Eliminar' -->
+        <ng-container *ngIf="tableColumn.deleteButton">
+          <a mat-flat-button color="warn" routerLink="{{tableColumn.deleteUrl}}{{row.id}}" class="boton">
+            <mat-icon>
+              <span class="material-symbols-outlined">delete</span>
+            </mat-icon>
+            Eliminar
+          </a>
+        </ng-container>
+
+      </td>  
+    </ng-container>
+
+    <!-- Si el contenido de la celda no es una imagen-->
+    <ng-container *ngIf="!tableColumn.isImage; else isImage">
+      <td mat-cell *matCellDef="let row">
+        {{row[tableColumn.dataKey]}}
+      </td>
+    </ng-container>
+        
+    <!-- Si el contenido de la celda es una imagen-->
+    <ng-template #isImage>
+      <td mat-cell *matCellDef="let row">
+        <img class="cover" [src]="row[tableColumn.dataKey]" alt="{{row.name}} cover">
+      </td>
+    </ng-template>
+    
+  </ng-container>
+  
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr> 
+
+  
+  <!-- Fila que se muestra cuando no se encuentran datos -->
+  <tr class="mat-row" *matNoDataRow>
+    <td class="mat-cell" [attr.colspan]="displayedColumns.length">No se encontraron elementos que contengan "{{input.value}}."</td>
+  </tr>
+
+</table>
+
+<!-- Paginación de la tabla -->
+<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Selecciona una página"></mat-paginator>
