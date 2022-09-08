@@ -1,13 +1,23 @@
 .footer {
+  display: grid;
+  grid-template-areas: "enlaces" "copyright";
+  justify-content: center;
+  /* grid-template-columns: 100%; */
+  /* align-items: center; */
   background-color: #3f51b5;
   color: #fff;
   font-size: 12px;
   height: 110px;
   padding: 10px 5%;
-  display: flex;
-  justify-content: center;
+  /* display: flex; */
+}
+
+.footer-links {
+  grid-area: enlaces;
 }
 
 .footer-copyright {
+  grid-area: copyright;
+  justify-self: center;
   padding-top: 1%;
 }
