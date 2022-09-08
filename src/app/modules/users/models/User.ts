@@ -3,11 +3,12 @@ export interface User {
   name: string;
   surname: string;
   email: string;
-  password: string;
+  password?: string;
   idRole: number;
   roleName: string;
   seed: string;
-  image: string;
+  image?: string;
+  registro: string;
   createdAt: Date;
   updatedAt: Date;
 }

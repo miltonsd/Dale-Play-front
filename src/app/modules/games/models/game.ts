@@ -3,11 +3,14 @@ export interface Game {
   name: string;
   image: string;
   valoration: number;
-  idCategory: number;
-  nameCategory: string;
-  idDeveloper: number;
-  nameDeveloper: string;
+  idCategory?: number;
+  nameCategory?: string;
+  idDeveloper?: number;
+  nameDeveloper?: string;
   description: string;
+  trailer: string;
+  isAvailable: boolean;
+  date: Date;
   createdAt: Date;
   updatedAt: Date;
 }
