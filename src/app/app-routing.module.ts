@@ -7,14 +7,14 @@ import { AdminGuard, AuthGuard } from '@dlp/shared/guards';
 
 const routes: Routes = [
   {
-    path: 'home',
+    path: 'auth',
     loadChildren: () =>
-      import('./modules/home/home.module').then((m) => m.HomeModule),
+      import('./modules/auth/auth.module').then((m) => m.AuthModule),
   },
   {
     path: '',
     loadChildren: () =>
-      import('./modules/auth/auth.module').then((m) => m.AuthModule),
+      import('./modules/home/home.module').then((m) => m.HomeModule),
   },
   {
     path: 'store',

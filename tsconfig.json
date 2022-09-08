@@ -28,6 +28,8 @@
       "@dlp/shared/services": ["src/app/shared/services/index.ts"],
       "@dlp/shared/guards": ["src/app/shared/guards/index.ts"],
       "@dlp/shared/models": ["src/app/shared/models/index.ts"],
+      // Home
+      "@dlp/home/views": ["src/app/modules/home/views/index.ts"],
       // Auth
       "@dlp/auth/services": ["src/app/modules/auth/services/index.ts"],
       "@dlp/auth/views": ["src/app/modules/auth/views/index.ts"],
