@@ -7,15 +7,15 @@ import { GamesComponent } from './games.component';
 // Modulos
 import { ComponentsModule, MaterialModule } from '@dlp/shared/modules';
 // Components
-import { GameComponent, GameDetailsComponent } from '@dlp/games/components';
+import { GameComponent } from '@dlp/games/components';
 // Servicios
 import { GamesService } from '@dlp/games/services';
 // Views
-import { StoreComponent } from '@dlp/games/views';
+import { GameDetailsComponent, StoreComponent } from '@dlp/games/views';
 
 const modules = [ComponentsModule, MaterialModule];
-const components = [GameComponent, GameDetailsComponent];
-const views = [StoreComponent];
+const components = [GameComponent];
+const views = [StoreComponent, GameDetailsComponent];
 
 @NgModule({
   declarations: [GamesComponent, ...components, ...views],

@@ -1,0 +1,24 @@
+<ng-container *ngIf="game">
+  <article class="game">
+
+    <div class="game-details mat-elevation-z9">
+      <p class="titulo mat-display-3"> {{game.name}} </p>
+      <p class="texto mat-body-2"> {{game.description}} </p>
+      <div [innerHtml]="trailer" class="trailer"></div>
+      <div class="panel">
+        <img class="cover border" [src]="game.image" alt="{{game.name}} cover">
+        &nbsp;
+        <div class="info-panel mat-body-2">
+          <p> Desarrollador: {{game.nameDeveloper}}</p>
+          <p> Categoría: {{game.nameCategory}}</p>
+          <p> Valoración: {{game.valoration}}</p>
+        </div>
+        &nbsp;
+        <button mat-flat-button color="primary" class="boton" (click)="addToLibrary()">Agregar</button>
+        &nbsp;
+        <a mat-flat-button color="warn" class="boton" routerLink="/store">Volver a la tienda</a>
+      </div>
+    </div>
+    
+  </article>
+</ng-container>
