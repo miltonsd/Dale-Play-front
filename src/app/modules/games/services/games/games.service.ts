@@ -7,37 +7,35 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class GamesService {
+  url = environment.apiUrl + '/games';
+
   constructor(private _http: HttpClient) {}
 
   getGame(gameId: number) {
-    return this._http.get(`${environment.apiUrl}/games/${gameId}`);
+    return this._http.get(`${this.url}/${gameId}`);
   }
 
   getGames() {
-    return this._http.get(`${environment.apiUrl}/games/`);
+    return this._http.get(`${this.url}/`);
   }
 
   createGame(game: any) {
-    return this._http.post(`${environment.apiUrl}/games/`, game);
+    return this._http.post(`${this.url}/`, game);
   }
 
   deleteGame(gameId: number) {
-    return this._http.delete(`${environment.apiUrl}/games/${gameId}`);
+    return this._http.delete(`${this.url}/${gameId}`);
   }
 
   updateGame(gameId: number, game: any) {
-    return this._http.patch(`${environment.apiUrl}/games/${gameId}`, game);
+    return this._http.patch(`${this.url}/${gameId}`, game);
   }
 
   getGamesByCategory(categoryId: number) {
-    return this._http.get(`${environment.apiUrl}/games/category/${categoryId}`);
+    return this._http.get(`${this.url}/category/${categoryId}`);
   }
 
   getGamesByDeveloper(devId: number) {
-    return this._http.get(`${environment.apiUrl}/games/developer/${devId}`);
-  }
-
-  addGameToUser(gameId: number) {
-    return this._http.post(`${environment.apiUrl}/usergame/`, gameId);
+    return this._http.get(`${this.url}/developer/${devId}`);
   }
 }

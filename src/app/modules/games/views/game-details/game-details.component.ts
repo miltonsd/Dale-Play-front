@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 
-import { GamesService } from '@dlp/games/services';
+import { GamesService, UserGamesService } from '@dlp/games/services';
 import { Game } from '@dlp/games/models';
 
 @Component({
@@ -18,7 +18,8 @@ export class GameDetailsComponent implements OnInit {
     private _activatedRoute: ActivatedRoute,
     private _gamesService: GamesService,
     private _router: Router,
-    private _sanitizer: DomSanitizer
+    private _sanitizer: DomSanitizer,
+    private _userGames: UserGamesService
   ) {}
 
   ngOnInit(): void {
@@ -27,7 +28,6 @@ export class GameDetailsComponent implements OnInit {
     // Busco el juego
     this._gamesService.getGame(gameId).subscribe({
       next: (response: any) => {
-        console.log(response);
         this.game = {
           id: response.id,
           name: response.name,
@@ -54,13 +54,13 @@ export class GameDetailsComponent implements OnInit {
   }
 
   addToLibrary() {
-    this._gamesService.addGameToUser(this.game.id).subscribe({
-      next: (response: any) => {
-        console.log(response);
+    this._userGames.addUserGame(this.game.id).subscribe({
+      next: (res: any) => {
+        console.log(res.msg);
         this._router.navigate(['/profile']);
       },
       error: (err) => {
-        console.error(err);
+        console.log(err.msg);
         this._router.navigate(['/store']);
       },
     });

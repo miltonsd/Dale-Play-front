@@ -9,7 +9,7 @@ import { ComponentsModule, MaterialModule } from '@dlp/shared/modules';
 // Components
 import { GameComponent } from '@dlp/games/components';
 // Servicios
-import { GamesService } from '@dlp/games/services';
+import { GamesService, UserGamesService } from '@dlp/games/services';
 // Views
 import { GameDetailsComponent, StoreComponent } from '@dlp/games/views';
 
@@ -20,6 +20,6 @@ const views = [StoreComponent, GameDetailsComponent];
 @NgModule({
   declarations: [GamesComponent, ...components, ...views],
   imports: [CommonModule, GamesRoutingModule, ...modules],
-  providers: [GamesService],
+  providers: [GamesService, UserGamesService],
 })
 export class GamesModule {}
