@@ -7,12 +7,15 @@ import { DashboardService } from '../../services/dashboard.service';
   styleUrls: ['./about.component.css'],
 })
 export class AboutComponent implements OnInit {
+  counter!: any;
   constructor(private _dashboardService: DashboardService) {}
 
   ngOnInit(): void {
     this._dashboardService.getMetrics().subscribe({
       next: (response: any) => {
         console.log(response);
+        this.counter = response;
+        // console.log(response.length);
       },
       error: (err) => {
         console.error(err);

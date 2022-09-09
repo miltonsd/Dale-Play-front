@@ -7,10 +7,11 @@ import { HomeComponent } from './home.component';
 import { DashboardService } from './services/dashboard.service';
 // Views
 import { AboutComponent, FaqComponent } from '@dlp/home/views';
+import { MetricsComponent } from './components/metrics/metrics.component';
 
 const views = [AboutComponent, FaqComponent];
 @NgModule({
-  declarations: [HomeComponent, ...views],
+  declarations: [HomeComponent, ...views, MetricsComponent],
   imports: [CommonModule, HomeRoutingModule],
   providers: [DashboardService],
 })
