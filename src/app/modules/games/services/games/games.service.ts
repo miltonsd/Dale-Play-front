@@ -13,7 +13,7 @@ export class GamesService {
     return this._http.get(`${environment.apiUrl}/games/${gameId}`);
   }
 
-  getAllGames() {
+  getGames() {
     return this._http.get(`${environment.apiUrl}/games/`);
   }
 
@@ -35,10 +35,6 @@ export class GamesService {
 
   getGamesByDeveloper(devId: number) {
     return this._http.get(`${environment.apiUrl}/games/developer/${devId}`);
-  }
-
-  getGamesByUser(userId: number) {
-    return this._http.get(`${environment.apiUrl}/games/user/${userId}`);
   }
 
   addGameToUser(gameId: number) {
