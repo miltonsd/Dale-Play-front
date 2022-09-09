@@ -15,8 +15,10 @@ export class StoreComponent implements OnInit {
 
   ngOnInit(): void {
     // Busca los juegos para cargarlos en la tienda
-    this._gamesService.getAllGames().subscribe({
+    this._gamesService.getGames().subscribe({
       next: (response: any) => {
+        console.log(response);
+
         this.games = response;
       },
       error: (err) => {

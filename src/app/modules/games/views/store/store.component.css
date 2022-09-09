@@ -13,10 +13,11 @@
 .games-content {
   display: grid;
   grid-template-areas: "titulo" "games";
-  grid-template-rows: 12vh auto;
+  grid-template-rows: 10vh auto;
   align-items: center;
   justify-content: center;
-  margin-bottom: 8%;
+  margin-bottom: 5vh;
+  /* background: red; */
 }
 
 .titulo {
@@ -32,5 +33,5 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
-  min-height: 100vh;
+  min-height: 90vh;
 }
