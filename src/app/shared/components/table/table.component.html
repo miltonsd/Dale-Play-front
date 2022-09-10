@@ -49,7 +49,7 @@
           
         <!-- Si existe botón de 'Eliminar' -->
         <ng-container *ngIf="tableColumn.deleteButton">
-          <a mat-flat-button color="warn" routerLink="{{tableColumn.deleteUrl}}{{row.id}}" class="boton">
+          <a mat-flat-button color="warn" (click)="openDialog(row)" class="boton">
             <mat-icon>
               <span class="material-symbols-outlined">delete</span>
             </mat-icon>

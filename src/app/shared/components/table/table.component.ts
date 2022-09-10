@@ -1,9 +1,19 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  ViewChild,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { TableColumn } from '@dlp/shared/models';
+import { TableButtonAction, TableColumn } from '@dlp/shared/models';
+
+import { ConfirmDialogComponent } from '@dlp/shared/components';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'dlp-table',
@@ -25,7 +35,10 @@ export class TableComponent implements OnInit {
     this.setTableDataSource(data);
   }
 
-  constructor() {}
+  @Output() action: EventEmitter<TableButtonAction> =
+    new EventEmitter<TableButtonAction>();
+
+  constructor(public dialog: MatDialog) {}
 
   ngOnInit(): void {
     const columnNames = this.tableColumns.map(
@@ -46,5 +59,17 @@ export class TableComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  openDialog(element: any) {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '350px',
+      data: { msg: element.name },
+    });
+    dialogRef.afterClosed().subscribe((res) => {
+      if (res) {
+        this.action.emit(element);
+      }
+    });
   }
 }
