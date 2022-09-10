@@ -4,12 +4,15 @@ import { AdminComponent } from './admin.component';
 
 // Guards
 import { AdminGuard, AuthGuard } from '@dlp/shared/guards';
-import { GamesListComponent } from '@dlp/admin/views';
-import { UsersListComponent } from '../users/components/users-list/users-list.component';
+// Views
+import {
+  GamesListComponent,
+  GamesCreateComponent,
+  GamesUpdateComponent,
+  UsersListComponent,
+} from '@dlp/admin/views';
 import { UsersCreateComponent } from '../users/components/users-create/users-create.component';
 import { UsersUpdateComponent } from '../users/components/users-update/users-update.component';
-import { GamesCreateComponent } from './views/games-create/games-create.component';
-import { GamesUpdateComponent } from './views/games-update/games-update.component';
 
 const routes: Routes = [
   {

@@ -5,6 +5,9 @@ import { TableColumn } from '@dlp/shared/models';
 import { Game } from '@dlp/games/models';
 import { GamesService } from '@dlp/games/services';
 
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from '@dlp/shared/components';
+
 @Component({
   selector: 'dlp-games-list',
   templateUrl: './games-list.component.html',
@@ -16,7 +19,11 @@ export class GamesListComponent implements OnInit {
 
   gamesTableColumns: TableColumn[] = [];
 
-  constructor(private _gamesService: GamesService, private _router: Router) {}
+  constructor(
+    private _gamesService: GamesService,
+    private _router: Router,
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.gamesTableColumns = [
@@ -34,7 +41,6 @@ export class GamesListComponent implements OnInit {
         editButton: true,
         editUrl: '/admin/games/edit/',
         deleteButton: true,
-        deleteUrl: '/admin/games/delete/',
       },
     ];
 
@@ -66,23 +72,33 @@ export class GamesListComponent implements OnInit {
       error: (err) => {
         console.error(`Código de error ${err.status}: `, err.error.msg);
       },
-      complete: () => {
-        // Carga los juegos en la tabla
-        // this.dataSource = new MatTableDataSource(this.games);
-      },
     });
   }
 
-  onDelete(gameId: number) {
-    this._gamesService.deleteGame(gameId).subscribe({
-      next: (response: any) => {
-        console.log(response.msg);
+  onDelete(game: any) {
+    this._gamesService.deleteGame(game.id).subscribe({
+      next: () => {
+        const dialogRef = this.dialog.open(DialogComponent, {
+          width: '350px',
+          data: {
+            title: 'Eliminar Juego',
+            msg: 'Se ha eliminado el juego ' + game.name + ' con éxito.',
+          },
+        });
+        dialogRef.afterClosed().subscribe(() => {
+          this._router.navigate(['/admin/games']).then(() => {
+            window.location.reload();
+          });
+        });
       },
       error: (err) => {
-        console.error(err);
-      },
-      complete: () => {
-        this._router.navigate(['/admin/']);
+        this.dialog.open(DialogComponent, {
+          width: '350px',
+          data: {
+            title: 'Eliminar Juego - Error',
+            msg: err.error.msg,
+          },
+        });
       },
     });
   }
