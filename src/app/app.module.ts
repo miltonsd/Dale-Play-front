@@ -5,6 +5,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 
 // Módulos compartidos
 import { ComponentsModule, MaterialModule } from '@dlp/shared/modules';
@@ -14,7 +15,6 @@ import { HeaderComponent, FooterComponent } from '@dlp/core/components';
 import { TokenInterceptorService } from '@dlp/shared/services';
 // Guards
 import { AdminGuard, AuthGuard } from '@dlp/shared/guards';
-import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 
 const modules = [ComponentsModule, MaterialModule];
 const components = [HeaderComponent, FooterComponent];

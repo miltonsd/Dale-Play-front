@@ -1,0 +1,26 @@
+<ng-container *ngIf="users"> 
+  <div class="profile">  
+
+    <h1 class="titulo"> Usuarios</h1>
+    
+      <article class="games-library">
+      
+        <ng-container *ngIf="users">
+        
+          <a mat-flat-button color="accent" class="boton" routerLink="create">
+            <mat-icon>
+              <span class="material-symbols-outlined">
+                add
+             </span>
+            </mat-icon>
+            Nuevo
+          </a>
+        
+        <!-- Tabla -->
+        <dlp-table (action)="onDelete($event)" [tableData]="users" [tableColumns]="usersTableColumns"></dlp-table>
+
+      </ng-container>
+    </article>
+      
+  </div>
+</ng-container>
