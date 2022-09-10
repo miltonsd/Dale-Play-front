@@ -12,6 +12,7 @@ import { MatTableDataSource } from '@angular/material/table';
 export class StoreComponent implements OnInit {
   games: Game[] = [];
   dataSource!: MatTableDataSource<any>;
+  isShowing!: boolean;
 
   constructor(private _gamesService: GamesService) {}
 
@@ -36,5 +37,9 @@ export class StoreComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  toggleSidenav() {
+    this.isShowing = !this.isShowing;
   }
 }

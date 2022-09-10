@@ -1,6 +1,8 @@
 <mat-sidenav-container>
+  
   <!-- Barra lateral -->
-  <mat-sidenav mode="side" opened class="games-filter">
+  <mat-sidenav class="games-filter" [(opened)]="isShowing" mode="side">
+    
     <mat-nav-list>
       <div class="with-icon mat-h1">
         <mat-icon>
@@ -11,12 +13,31 @@
         Filtrar
       </div>
     </mat-nav-list>
-    
+
     <mat-divider></mat-divider>
+  
+  </mat-sidenav>
+
+  <!-- Contenido -->
+  <mat-sidenav-content class="content">
     
-    <!-- Buscar juego por su nombre -->
-    <mat-nav-list>
-      <div class="with-icon mat-h3">
+    <div class="games-content"> 
+      
+      <div class="titulo">
+        Tienda
+      </div>
+
+      <div class="busqueda">
+        
+        <button mat-raised-button (click)="toggleSidenav()">
+          <mat-icon>
+            <span class="material-symbols-rounded">
+              filter_alt
+            </span>
+         </mat-icon>Filtrar
+        </button>
+        &nbsp;
+        
         <mat-form-field appearance="standard" class="filtro">      
           <mat-label>
             <mat-icon>
@@ -26,39 +47,32 @@
             </mat-icon>
             Buscar juego
           </mat-label>
-          <input matInput (keyup)="applyFilter($event)" placeholder="Ingrese un nombre" #input>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Ingrese el nombre de un juego" #input>
         </mat-form-field>
-      </div>
-    </mat-nav-list> 
-    
-    <mat-divider></mat-divider>
-  
-  </mat-sidenav>
-  
-  <mat-sidenav-content>
-    <!-- Contenido -->
-    <div class="games-content"> 
-      <h1 class="titulo">Tienda</h1>
       
-      <div class="cards">
-
-        <ng-container *ngIf="this.dataSource">
+      </div>
+      
+      <ng-container *ngIf="this.dataSource">
         
-          <ng-container *ngIf="this.dataSource.filteredData.length > 0; else noGamesFilter">
+        <ng-container *ngIf="this.dataSource.filteredData.length > 0; else noGamesFilter">
+        <div class="cards">
             <section class="card" *ngFor="let game of this.dataSource.filteredData">
               <dlp-game [game]="game"></dlp-game>
             </section>
-          </ng-container>  
-            
-          
-        </ng-container>
+          </div>
+        </ng-container>  
         
         <ng-template #noGamesFilter>
-          <div class="notFoundGames">
-            <h1>NO SE ENCONTRARON JUEGOS QUE CONTENGAN "{{input.value}}"</h1>
+          <div class="notFoundGames mat-display-1">
+            <p>NO SE ENCONTRARON JUEGOS.</p>
           </div>
         </ng-template>
-      </div>
-    </div>
+        </ng-container>
+      
+      
+    
+    </div>    
+
   </mat-sidenav-content>
+
 </mat-sidenav-container>

@@ -9,16 +9,21 @@
   width: 200px;
   font-size: 20px;
 }
+.content {
+  display: flex;
+  justify-content: center;
+}
 
 .games-content {
   display: grid;
-  grid-template-areas: "titulo" "games";
-  /* grid-template-columns: 80%; */
-  grid-template-rows: 10vh auto;
+  grid-template-areas: "titulo" "busqueda" "noGames" "games";
+  grid-template-columns: 100%;
+  grid-template-rows: 10vh 10vh auto auto;
   align-items: center;
   justify-content: center;
   margin-bottom: 5vh;
-  /* background: red; */
+  width: 62vw;
+  min-height: 83vh;
 }
 
 .titulo {
@@ -27,6 +32,16 @@
   font-size: 48px;
   font-weight: 700;
   line-height: 48px;
+}
+
+.busqueda {
+  grid-area: busqueda;
+  min-width: 50vw;
+  max-width: 62vw;
+}
+
+.filtro {
+  width: 90%;
 }
 
 .cards {
@@ -38,11 +53,7 @@
 }
 
 .notFoundGames {
-  /* display: grid; */
-  grid-area: titulo;
-  /* display: flex; */
-  background: pink;
-  /* width: 100%; */
-  /* align-items: start; */
-  /* justify-content: center; */
+  grid-area: noGames;
+  display: flex;
+  justify-content: center;
 }
