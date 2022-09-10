@@ -38,7 +38,7 @@
       "@dlp/games/services": ["src/app/modules/games/services/index.ts"],
       "@dlp/games/views": ["src/app/modules/games/views/index.ts"],
       "@dlp/games/models": ["src/app/modules/games/models/game.ts"],
-      // Services
+      // Developers
       "@dlp/devs/services": ["src/app/modules/developers/services/index.ts"],
       "@dlp/devs/models": ["src/app/modules/developers/models/developer.ts"],
       // Categories

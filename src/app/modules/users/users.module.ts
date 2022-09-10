@@ -1,23 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
 
 import { UsersRoutingModule } from './users-routing.module';
 import { UsersComponent } from './users.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
+// Modulos
 import { ComponentsModule, MaterialModule } from '@dlp/shared/modules';
-import { ProfileComponent } from './views/profile/profile.component';
-import { AuthService } from '../auth/services/auth/auth.service';
+// Servicios
+import { AuthService } from '@dlp/auth/services';
+// Views
+import { ProfileComponent } from '@dlp/users/views';
 
+const modules = [ReactiveFormsModule, ComponentsModule, MaterialModule];
+const views = [ProfileComponent];
 @NgModule({
-  declarations: [UsersComponent, ProfileComponent],
-  imports: [
-    CommonModule,
-    UsersRoutingModule,
-    ReactiveFormsModule,
-    ComponentsModule,
-    MaterialModule,
-  ],
+  declarations: [UsersComponent, ...views],
+  imports: [CommonModule, UsersRoutingModule, ...modules],
   providers: [AuthService],
 })
 export class UsersModule {}
