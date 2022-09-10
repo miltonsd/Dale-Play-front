@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { Game } from '@dlp/games/models';
-import { GamesService } from '../../services/games/games.service';
+import { GamesService } from '@dlp/games/services';
 
 @Component({
   selector: 'dlp-games-list',
@@ -29,7 +29,7 @@ export class GamesListComponent implements OnInit {
 
   ngOnInit(): void {
     // Busca los juegos
-    this._gamesService.getAllGames().subscribe({
+    this._gamesService.getGames().subscribe({
       next: (response: any) => {
         this.games = response;
       },

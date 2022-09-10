@@ -12,21 +12,24 @@ import { UsersListComponent } from '../users/components/users-list/users-list.co
 import { UsersCreateComponent } from '../users/components/users-create/users-create.component';
 import { UsersUpdateComponent } from '../users/components/users-update/users-update.component';
 // Components Games
-import { GamesListComponent } from '../games/components/games-list/games-list.component';
 import { GamesUpdateComponent } from '../games/components/games-update/games-update.component';
 import { GamesCreateComponent } from '../games/components/games-create/games-create.component';
+// Views
+import { GamesListComponent } from '@dlp/admin/views';
 
-const modules = [ComponentsModule, MaterialModule];
+const modules = [ReactiveFormsModule, ComponentsModule, MaterialModule];
+const views = [GamesListComponent];
+
 @NgModule({
   declarations: [
     AdminComponent,
     UsersListComponent,
     UsersCreateComponent,
     UsersUpdateComponent,
-    GamesListComponent,
     GamesCreateComponent,
     GamesUpdateComponent,
+    ...views,
   ],
-  imports: [CommonModule, AdminRoutingModule, ReactiveFormsModule, ...modules],
+  imports: [CommonModule, AdminRoutingModule, ...modules],
 })
 export class AdminModule {}
