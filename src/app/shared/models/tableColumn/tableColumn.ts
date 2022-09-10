@@ -7,6 +7,5 @@ export interface TableColumn {
   deleteButton?: boolean; // La columna tiene un boton para eliminar?
   detailsUrl?: string;
   editUrl?: string;
-  deleteUrl?: string;
   isSortable?: boolean; // Se puede ordenar la columna?
 }
