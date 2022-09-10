@@ -23,6 +23,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatRadioModule } from '@angular/material/radio';
 
 const modules = [
   MatToolbarModule,
@@ -46,6 +47,7 @@ const modules = [
   MatSortModule,
   MatSelectModule,
   MatDialogModule,
+  MatRadioModule,
 ];
 @NgModule({
   declarations: [],

@@ -7,28 +7,27 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class CategoriesService {
+  url = environment.apiUrl + '/categories';
+
   constructor(private _http: HttpClient) {}
 
   getCategory(categoryId: number) {
-    return this._http.get(`${environment.apiUrl}/category/${categoryId}`);
+    return this._http.get(`${this.url}/${categoryId}`);
   }
 
-  getAllCategories() {
-    return this._http.get(`${environment.apiUrl}/category`);
+  getCategories() {
+    return this._http.get(`${this.url}/`);
   }
 
   createCategory(category: any) {
-    return this._http.post(`${environment.apiUrl}/category`, category);
+    return this._http.post(`${this.url}/`, category);
   }
 
   deleteCategory(categoryId: number) {
-    return this._http.delete(`${environment.apiUrl}/category/${categoryId}`);
+    return this._http.delete(`${this.url}/${categoryId}`);
   }
 
   updateCategory(categoryId: number, category: any) {
-    return this._http.patch(
-      `${environment.apiUrl}/category/${categoryId}`,
-      category
-    );
+    return this._http.patch(`${this.url}/${categoryId}`, category);
   }
 }
