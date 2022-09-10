@@ -18,7 +18,7 @@
       <mat-label>Ingrese valoration</mat-label>
       <input matInput formControlName="valoration" placeholder="valoration" tabindex="3">
       <mat-error *ngIf="form.controls.valoration.hasError('required')">El email es necesario</mat-error>
-      <mat-error *ngIf="form.controls.valoration.hasError('pattern')">El apellido no puede contener números</mat-error>
+      <mat-error *ngIf="form.controls.valoration.hasError('pattern')">La valoracion tiene que estar entre 1 y 5</mat-error>
       </mat-form-field>
     
       <mat-form-field appearance="outline" class="register-input">

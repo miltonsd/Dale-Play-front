@@ -3,8 +3,6 @@
 
     <h1 class="titulo">JUEGOS</h1>
 
-    
-    
     <article class="games-library">
       
       <ng-container *ngIf="games">
@@ -19,79 +17,8 @@
         </a>
         
         <!-- Tabla -->
-        <div class="mat-elevation-z8">
-          <table mat-table [dataSource]="dataSource" class="tabla" >
+        <dlp-table [tableData]="games" [tableColumns]="gamesTableColumns"></dlp-table>
 
-            <!-- Image Column -->
- 
-            <!-- ID Column -->
-            <ng-container matColumnDef="id">
-              <th mat-header-cell *matHeaderCellDef > ID </th>
-              <td mat-cell *matCellDef="let row"> {{row.id}} </td>
-            </ng-container>
-
-            <!-- Name Column -->
-            <ng-container matColumnDef="name">
-              <th mat-header-cell *matHeaderCellDef > Nombre </th>
-              <td mat-cell *matCellDef="let row"> {{row.name}} </td>
-            </ng-container>
-            
-            <!-- Developer Column -->
-            <ng-container matColumnDef="description" >
-              <th mat-header-cell *matHeaderCellDef  > Descripción </th>
-              <td mat-cell *matCellDef="let row"> {{row.description}} </td>
-            </ng-container>
-            
-            <!-- Category Column -->
-            <ng-container matColumnDef="category">
-              <th mat-header-cell *matHeaderCellDef  > Categoría </th>
-              <td mat-cell *matCellDef="let row"> {{row.nameCategory}} </td>
-            </ng-container>
-            
-            <!-- Valoration Column -->
-            <ng-container matColumnDef="developer">
-              <th mat-header-cell *matHeaderCellDef  > Desarrollador </th>
-              <td mat-cell *matCellDef="let row"> {{row.nameDeveloper}} </td>
-            </ng-container>
-
-            <!-- Valoration Column -->
-            <ng-container matColumnDef="valoration">
-              <th mat-header-cell *matHeaderCellDef  > Valoración </th>
-              <td mat-cell *matCellDef="let row"> {{row.valoration}} </td>
-            </ng-container>
-            
-            <ng-container matColumnDef="acciones">
-              <th mat-header-cell *matHeaderCellDef> Acciones </th>
-              <td mat-cell *matCellDef="let row">
-                <a mat-flat-button color="primary" class="boton" routerLink="edit/{{row.id}}">
-                  <mat-icon>
-                    <span class="material-symbols-outlined">
-                      edit
-                    </span>
-                  </mat-icon>
-                  Editar
-                </a>
-                &nbsp;
-
-                <a mat-flat-button color="warn" class="boton" (click)="onDelete(row.id)">
-                  <mat-icon>
-                    <span class="material-symbols-outlined">
-                      delete
-                    </span>
-                  </mat-icon>
-                  Eliminar
-                </a>
-                &nbsp;
-              </td>
-            </ng-container>
-
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-            
-          </table>
-          
-        </div>
-        
       </ng-container>
     </article>
       

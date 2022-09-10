@@ -12,8 +12,8 @@ import { UsersListComponent } from '../users/components/users-list/users-list.co
 import { UsersCreateComponent } from '../users/components/users-create/users-create.component';
 import { UsersUpdateComponent } from '../users/components/users-update/users-update.component';
 // Components Games
-import { GamesUpdateComponent } from '../games/components/games-update/games-update.component';
-import { GamesCreateComponent } from '../games/components/games-create/games-create.component';
+import { GamesUpdateComponent } from './views/games-update/games-update.component';
+import { GamesCreateComponent } from './views/games-create/games-create.component';
 // Views
 import { GamesListComponent } from '@dlp/admin/views';
 

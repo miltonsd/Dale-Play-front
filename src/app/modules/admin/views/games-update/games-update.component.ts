@@ -6,7 +6,7 @@ import { CategoriesService } from '@dlp/categories/services';
 import { Developer } from '@dlp/devs/models';
 import { DevelopersService } from '@dlp/devs/services';
 import { Game } from '@dlp/games/models';
-import { GamesService } from '../../services/games/games.service';
+import { GamesService } from '../../../games/services/games/games.service';
 
 @Component({
   selector: 'dlp-games-update',
@@ -50,7 +50,7 @@ export class GamesUpdateComponent implements OnInit {
         console.error(err);
       },
     });
-    this._categoriesService.getAllCategories().subscribe({
+    this._categoriesService.getCategories().subscribe({
       next: (response: any) => {
         this.categories = response.elemts;
       },
@@ -58,7 +58,7 @@ export class GamesUpdateComponent implements OnInit {
         console.error(err);
       },
     });
-    this._developersService.getAllDevelopers().subscribe({
+    this._developersService.getDevelopers().subscribe({
       next: (response: any) => {
         this.developers = response.elemts;
       },

@@ -5,7 +5,7 @@ import { Category } from '@dlp/categories/models';
 import { CategoriesService } from '@dlp/categories/services';
 import { Developer } from '@dlp/devs/models';
 import { DevelopersService } from '@dlp/devs/services';
-import { GamesService } from '../../services/games/games.service';
+import { GamesService } from '../../../games/services/games/games.service';
 
 @Component({
   selector: 'dlp-games-create',
@@ -24,7 +24,7 @@ export class GamesCreateComponent implements OnInit {
       validators: [Validators.required],
     }),
     valoration: new FormControl('', {
-      validators: [Validators.required, Validators.pattern('[0-9]*')],
+      validators: [Validators.required, Validators.pattern('[1-5]')],
     }),
     idCategory: new FormControl(''),
     idDeveloper: new FormControl(''),
@@ -38,12 +38,12 @@ export class GamesCreateComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this._developersService.getAllDevelopers().subscribe({
+    this._developersService.getDevelopers().subscribe({
       next: (resDev: any) => {
         this.developers = resDev.elemts;
       },
     });
-    this._categoriesService.getAllCategories().subscribe({
+    this._categoriesService.getCategories().subscribe({
       next: (resCat: any) => {
         this.categories = resCat.elemts;
       },
