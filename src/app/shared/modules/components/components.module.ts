@@ -5,11 +5,17 @@ import {
   NotfoundComponent,
   TableComponent,
   DialogComponent,
+  ConfirmDialogComponent,
 } from '@dlp/shared/components';
 import { MaterialModule } from '../material/material.module';
 import { RouterModule } from '@angular/router';
 
-const components = [NotfoundComponent, TableComponent, DialogComponent];
+const components = [
+  NotfoundComponent,
+  TableComponent,
+  DialogComponent,
+  ConfirmDialogComponent,
+];
 
 @NgModule({
   declarations: [...components],
