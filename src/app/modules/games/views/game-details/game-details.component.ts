@@ -4,6 +4,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 
 import { GamesService, UserGamesService } from '@dlp/games/services';
 import { Game } from '@dlp/games/models';
+import { UsersService } from '@dlp/users/services';
+import { AuthService } from '@dlp/auth/services';
 
 @Component({
   selector: 'dlp-game-details',
@@ -12,21 +14,25 @@ import { Game } from '@dlp/games/models';
 })
 export class GameDetailsComponent implements OnInit {
   game!: Game;
+  games: Game[] = [];
+  gameId!: number;
   trailer: any;
 
   constructor(
-    private _activatedRoute: ActivatedRoute,
     private _gamesService: GamesService,
+    private _userGames: UserGamesService,
+    private _usersService: UsersService,
+    private _authService: AuthService,
     private _router: Router,
-    private _sanitizer: DomSanitizer,
-    private _userGames: UserGamesService
+    private _activatedRoute: ActivatedRoute,
+    private _sanitizer: DomSanitizer
   ) {}
 
   ngOnInit(): void {
     // Obtengo el id del juego por medio de la ruta
-    const gameId = Number(this._activatedRoute.snapshot.paramMap.get('gameId'));
+    this.gameId = Number(this._activatedRoute.snapshot.paramMap.get('gameId'));
     // Busco el juego
-    this._gamesService.getGame(gameId).subscribe({
+    this._gamesService.getGame(this.gameId).subscribe({
       next: (response: any) => {
         this.game = {
           id: response.id,
@@ -49,6 +55,23 @@ export class GameDetailsComponent implements OnInit {
       error: (err) => {
         console.error(`Código de error ${err.status}: `, err.error.msg);
         this._router.navigate(['/store']);
+      },
+    });
+  }
+
+  hasGame() {
+    const userId = this._authService.getCurrentUserId();
+    this._usersService.getUserGames(userId).subscribe({
+      next: (response: any) => {
+        const games = response.games;
+        if (games.find((game: any) => this.gameId === game.id)) {
+          return true;
+        } else {
+          return false;
+        }
+      },
+      error: (err) => {
+        console.error(`Código de error ${err.status}: `, err.error.msg);
       },
     });
   }

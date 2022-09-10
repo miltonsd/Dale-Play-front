@@ -14,7 +14,14 @@
           <p> Valoración: {{game.valoration}}</p>
         </div>
         &nbsp;
-        <button mat-flat-button color="primary" class="boton" (click)="addToLibrary()">Agregar</button>
+        <!-- <ng-container *ngIf="hasGame(); else addGame"> -->
+          <!-- <button mat-flat-button color="primary" class="boton" disabled="true">¡Ya tienes el juego!</button> -->
+        <!-- </ng-container> -->
+
+        <!-- <ng-template #addGame> -->
+          <button mat-flat-button color="primary" class="boton" (click)="addToLibrary()">Agregar</button>
+        <!-- </ng-template> -->
+        
         &nbsp;
         <a mat-flat-button color="warn" class="boton" routerLink="/store">Volver a la tienda</a>
       </div>
