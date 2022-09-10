@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
 import { AuthService } from '@dlp/auth/services';
+import { DialogComponent } from '@dlp/shared/components';
 @Component({
   selector: 'dlp-login',
   templateUrl: './login.component.html',
@@ -23,7 +25,11 @@ export class LoginComponent implements OnInit {
   });
   hide = true;
 
-  constructor(private _router: Router, private _authService: AuthService) {}
+  constructor(
+    private _router: Router,
+    private _authService: AuthService,
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {}
 
@@ -38,7 +44,13 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('token', res.token);
         },
         error: (err) => {
-          console.error(`Código de error ${err.status}: `, err.error.msg);
+          const dialogRef = this.dialog.open(DialogComponent, {
+            width: '400px',
+            data: { title: 'Error', msg: err.error.msg },
+          });
+          dialogRef.afterClosed().subscribe(() => {
+            this.form.reset();
+          });
         },
         complete: () => {
           this._router.navigate(['/store']);

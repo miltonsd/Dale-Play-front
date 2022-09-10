@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
 import { AuthService } from '@dlp/auth/services';
+import { DialogComponent } from '@dlp/shared/components';
 @Component({
   selector: 'dlp-register',
   templateUrl: './register.component.html',
@@ -33,7 +35,11 @@ export class RegisterComponent implements OnInit {
   hidePass = true;
   hideConfirm = true;
 
-  constructor(private _router: Router, private _authService: AuthService) {}
+  constructor(
+    private _router: Router,
+    private _authService: AuthService,
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {}
 
@@ -49,12 +55,30 @@ export class RegisterComponent implements OnInit {
       this._authService.register(user).subscribe({
         next: (res: any) => {
           console.log(res.msg);
+          const dialogRef = this.dialog.open(DialogComponent, {
+            width: '400px',
+            data: {
+              title: 'Felicitaciones',
+              msg:
+                res.msg +
+                '.  Se ha enviado un correo a su email. Por favor confírmelo',
+            },
+          });
+          dialogRef.afterClosed().subscribe(() => {
+            this._router.navigate(['']);
+          });
         },
         error: (err) => {
-          console.error(`Código de error ${err.status}: `, err.error.msg);
-        },
-        complete: () => {
-          this._router.navigate(['/login']);
+          const dialogRef = this.dialog.open(DialogComponent, {
+            width: '400px',
+            data: {
+              title: 'Error',
+              msg: err.error.msg,
+            },
+          });
+          dialogRef.afterClosed().subscribe(() => {
+            this.form.reset();
+          });
         },
       });
     } else {
