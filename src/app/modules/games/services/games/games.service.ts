@@ -30,8 +30,4 @@ export class GamesService {
   updateGame(gameId: number, game: any) {
     return this._http.patch(`${this.url}/${gameId}`, game);
   }
-
-  getGamesByDeveloper(devId: number) {
-    return this._http.get(`${this.url}/developer/${devId}`);
-  }
 }

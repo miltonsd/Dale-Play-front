@@ -1,11 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { NgModel } from '@angular/forms';
 
-import { GamesService } from '@dlp/games/services';
-import { Game } from '@dlp/games/models';
 import { MatTableDataSource } from '@angular/material/table';
+
+import { GamesService } from '@dlp/games/services';
 import { CategoriesService } from '@dlp/categories/services';
+import { DevelopersService } from '@dlp/devs/services';
+
+import { Game } from '@dlp/games/models';
 import { Category } from '@dlp/categories/models';
+import { Developer } from '@dlp/devs/models';
 
 @Component({
   selector: 'dlp-store',
@@ -15,21 +19,34 @@ import { Category } from '@dlp/categories/models';
 export class StoreComponent implements OnInit {
   games: Game[] = [];
   categories: Category[] = [];
-  categoryFiltered!: NgModel;
+  developers: Developer[] = [];
+  filters!: NgModel;
 
   dataSource!: MatTableDataSource<any>;
   isShowing!: boolean;
 
   constructor(
     private _gamesService: GamesService,
-    private _categoriesService: CategoriesService
+    private _categoriesService: CategoriesService,
+    private _developersService: DevelopersService
   ) {}
 
   ngOnInit(): void {
+    // Carga juegos al inicio
     this.cargarJuegos();
+    // Carga las categorías
     this._categoriesService.getCategories().subscribe({
       next: (response: any) => {
         this.categories = response.elemts;
+      },
+      error: (err: any) => {
+        console.error(`Código de error ${err.status}: `, err.error.msg);
+      },
+    });
+    // Carga los desarrolladores
+    this._developersService.getDevelopers().subscribe({
+      next: (response: any) => {
+        this.developers = response.elemts;
       },
       error: (err: any) => {
         console.error(`Código de error ${err.status}: `, err.error.msg);
@@ -68,15 +85,13 @@ export class StoreComponent implements OnInit {
     if (categoryId === 0) {
       this.cargarJuegos();
     } else {
-      // const categoryId = 1;
       this._categoriesService.getGames(categoryId).subscribe({
         next: (response: any) => {
-          console.log(response);
           this.games = response.games;
-          // this.categories = response.elemts;
         },
         error: (err: any) => {
           console.error(`Código de error ${err.status}: `, err.error.msg);
+          this.dataSource.data = [];
         },
         complete: () => {
           this.dataSource = new MatTableDataSource(this.games);
@@ -86,9 +101,27 @@ export class StoreComponent implements OnInit {
         },
       });
     }
+  }
 
-    // this.dataSource.filterPredicate = (data, filter) => {
-    //   return data.name.toLowerCase().includes(filter);
-    // };
+  developerFilter(developerId: number) {
+    if (developerId === 0) {
+      this.cargarJuegos();
+    } else {
+      this._developersService.getGames(developerId).subscribe({
+        next: (response: any) => {
+          this.games = response.games;
+        },
+        error: (err: any) => {
+          console.error(`Código de error ${err.status}: `, err.error.msg);
+          this.dataSource.data = [];
+        },
+        complete: () => {
+          this.dataSource = new MatTableDataSource(this.games);
+          this.dataSource.filterPredicate = (data, filter) => {
+            return data.name.toLowerCase().includes(filter);
+          };
+        },
+      });
+    }
   }
 }

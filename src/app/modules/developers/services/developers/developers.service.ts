@@ -7,28 +7,31 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class DevelopersService {
+  url = environment.apiUrl + '/developers';
+
   constructor(private _http: HttpClient) {}
 
-  getDeveloper(devId: number) {
-    return this._http.get(`${environment.apiUrl}/developer/${devId}`);
+  getDeveloper(developerId: number) {
+    return this._http.get(`${this.url}/${developerId}`);
   }
 
-  getAllDevelopers() {
-    return this._http.get(`${environment.apiUrl}/developer`);
+  getDevelopers() {
+    return this._http.get(`${this.url}/`);
   }
 
   createDeveloper(developer: any) {
-    return this._http.post(`${environment.apiUrl}/developer`, developer);
+    return this._http.post(`${this.url}/`, developer);
   }
 
-  deleteDeveloper(devId: number) {
-    return this._http.delete(`${environment.apiUrl}/developer/${devId}`);
+  deleteDeveloper(developerId: number) {
+    return this._http.delete(`${this.url}/${developerId}`);
   }
 
-  updateDeveloper(devId: number, developer: any) {
-    return this._http.patch(
-      `${environment.apiUrl}/developer/${devId}`,
-      developer
-    );
+  updateDeveloper(developerId: number, developer: any) {
+    return this._http.patch(`${this.url}/${developerId}`, developer);
+  }
+
+  getGames(developerId: number) {
+    return this._http.get(`${this.url}/${developerId}/games`);
   }
 }
