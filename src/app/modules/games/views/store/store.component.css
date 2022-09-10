@@ -7,8 +7,14 @@
 .games-filter {
   background: rgba(211, 211, 211, 0.363);
   width: 200px;
-  font-size: 20px;
+  /* font-size: 20px; */
 }
+
+.radio-button {
+  padding: 2% 15%;
+  width: 90%;
+}
+
 .content {
   display: flex;
   justify-content: center;

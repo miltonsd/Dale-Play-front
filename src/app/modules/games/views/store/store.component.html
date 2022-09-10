@@ -13,8 +13,40 @@
         Filtrar
       </div>
     </mat-nav-list>
-
+    
     <mat-divider></mat-divider>
+    
+    <mat-nav-list>
+      <div class="with-icon mat-h2">
+        <mat-icon>
+          <span class="material-symbols-rounded">
+            bookmark 
+          </span>
+        </mat-icon>
+        Categorías
+      </div>
+      <mat-radio-group aria-labelledby="radio-group-label" [(ngModel)]="categoryFiltered">
+        <mat-radio-button class="radio-button" *ngFor="let category of categories" [value]="category.id" (change)="categoryFilter(category.id)">
+          <div>
+            {{category.name}}
+          </div>
+        </mat-radio-button>
+        <mat-radio-button class="radio-button" [value]="0" (change)="categoryFilter(0)">
+          <div>No aplicar filtro</div>
+        </mat-radio-button>
+      </mat-radio-group>
+    </mat-nav-list>
+    
+    <mat-nav-list>
+      <div class="with-icon mat-h2">
+        <mat-icon>
+          <span class="material-symbols-rounded">
+            code_blocks 
+          </span>
+        </mat-icon>
+        Desarrolladores
+      </div>
+    </mat-nav-list>
   
   </mat-sidenav>
 
@@ -55,7 +87,7 @@
       <ng-container *ngIf="this.dataSource">
         
         <ng-container *ngIf="this.dataSource.filteredData.length > 0; else noGamesFilter">
-        <div class="cards">
+          <div class="cards">
             <section class="card" *ngFor="let game of this.dataSource.filteredData">
               <dlp-game [game]="game"></dlp-game>
             </section>
@@ -67,12 +99,9 @@
             <p>NO SE ENCONTRARON JUEGOS.</p>
           </div>
         </ng-template>
-        </ng-container>
       
-      
-    
+      </ng-container>
     </div>    
 
   </mat-sidenav-content>
-
 </mat-sidenav-container>

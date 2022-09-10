@@ -31,10 +31,6 @@ export class GamesService {
     return this._http.patch(`${this.url}/${gameId}`, game);
   }
 
-  getGamesByCategory(categoryId: number) {
-    return this._http.get(`${this.url}/category/${categoryId}`);
-  }
-
   getGamesByDeveloper(devId: number) {
     return this._http.get(`${this.url}/developer/${devId}`);
   }

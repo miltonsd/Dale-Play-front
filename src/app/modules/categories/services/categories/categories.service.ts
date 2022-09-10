@@ -30,4 +30,8 @@ export class CategoriesService {
   updateCategory(categoryId: number, category: any) {
     return this._http.patch(`${this.url}/${categoryId}`, category);
   }
+
+  getGames(categoryId: number) {
+    return this._http.get(`${this.url}/${categoryId}/games`);
+  }
 }
