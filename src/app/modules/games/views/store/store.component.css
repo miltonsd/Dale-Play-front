@@ -13,6 +13,7 @@
 .games-content {
   display: grid;
   grid-template-areas: "titulo" "games";
+  /* grid-template-columns: 80%; */
   grid-template-rows: 10vh auto;
   align-items: center;
   justify-content: center;
@@ -33,5 +34,15 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
-  min-height: 90vh;
+  min-height: 72vh;
+}
+
+.notFoundGames {
+  /* display: grid; */
+  grid-area: titulo;
+  /* display: flex; */
+  background: pink;
+  /* width: 100%; */
+  /* align-items: start; */
+  /* justify-content: center; */
 }

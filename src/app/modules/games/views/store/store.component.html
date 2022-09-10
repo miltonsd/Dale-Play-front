@@ -2,21 +2,36 @@
   <!-- Barra lateral -->
   <mat-sidenav mode="side" opened class="games-filter">
     <mat-nav-list>
-      <div class="with-icon">
+      <div class="with-icon mat-h1">
         <mat-icon>
           <span class="material-symbols-rounded">
             filter_alt
           </span>
         </mat-icon>
-        Filtros
+        Filtrar
       </div>
     </mat-nav-list>
-
+    
     <mat-divider></mat-divider>
     
+    <!-- Buscar juego por su nombre -->
     <mat-nav-list>
-      <!-- bbb -->
+      <div class="with-icon mat-h3">
+        <mat-form-field appearance="standard" class="filtro">      
+          <mat-label>
+            <mat-icon>
+              <span class="material-symbols-rounded">
+                search
+              </span>
+            </mat-icon>
+            Buscar juego
+          </mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Ingrese un nombre" #input>
+        </mat-form-field>
+      </div>
     </mat-nav-list> 
+    
+    <mat-divider></mat-divider>
   
   </mat-sidenav>
   
@@ -24,10 +39,25 @@
     <!-- Contenido -->
     <div class="games-content"> 
       <h1 class="titulo">Tienda</h1>
+      
       <div class="cards">
-        <section class="card" *ngFor="let game of games">
-          <dlp-game [game]="game"></dlp-game>
-        </section>
+
+        <ng-container *ngIf="this.dataSource">
+        
+          <ng-container *ngIf="this.dataSource.filteredData.length > 0; else noGamesFilter">
+            <section class="card" *ngFor="let game of this.dataSource.filteredData">
+              <dlp-game [game]="game"></dlp-game>
+            </section>
+          </ng-container>  
+            
+          
+        </ng-container>
+        
+        <ng-template #noGamesFilter>
+          <div class="notFoundGames">
+            <h1>NO SE ENCONTRARON JUEGOS QUE CONTENGAN "{{input.value}}"</h1>
+          </div>
+        </ng-template>
       </div>
     </div>
   </mat-sidenav-content>
