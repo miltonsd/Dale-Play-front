@@ -14,6 +14,7 @@ import { HeaderComponent, FooterComponent } from '@dlp/core/components';
 import { TokenInterceptorService } from '@dlp/shared/services';
 // Guards
 import { AdminGuard, AuthGuard } from '@dlp/shared/guards';
+import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 
 const modules = [ComponentsModule, MaterialModule];
 const components = [HeaderComponent, FooterComponent];
@@ -33,6 +34,10 @@ const components = [HeaderComponent, FooterComponent];
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,
       multi: true,
+    },
+    {
+      provide: MAT_DIALOG_DEFAULT_OPTIONS,
+      useValue: { hasBackdrop: false },
     },
   ],
   bootstrap: [AppComponent],
