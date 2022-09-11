@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AuthService } from '@dlp/auth/services';
+import { DialogComponent } from '@dlp/shared/components';
 
 @Component({
   selector: 'dlp-users-create',
@@ -33,7 +35,11 @@ export class UsersCreateComponent implements OnInit {
   hidePass = true;
   hideConfirm = true;
 
-  constructor(private _authService: AuthService, private _router: Router) {}
+  constructor(
+    private _authService: AuthService,
+    private _router: Router,
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {}
 
@@ -48,13 +54,30 @@ export class UsersCreateComponent implements OnInit {
       };
       this._authService.register(user).subscribe({
         next: (res: any) => {
-          console.log(res.msg);
+          const dialogRef = this.dialog.open(DialogComponent, {
+            width: '375px',
+            autoFocus: true,
+            data: {
+              title: 'Registrar usuario',
+              msg: res.msg,
+            },
+          });
+          dialogRef.afterClosed().subscribe(() => {
+            this._router.navigate(['/admin/users']);
+          });
         },
         error: (err) => {
-          console.error(`Código de error ${err.status}: `, err.error.msg);
-        },
-        complete: () => {
-          this._router.navigate(['/admin/users']);
+          const dialogRef = this.dialog.open(DialogComponent, {
+            width: '375px',
+            autoFocus: true,
+            data: {
+              title: 'Error al registrar usuario',
+              msg: err.error.msg,
+            },
+          });
+          dialogRef.afterClosed().subscribe(() => {
+            this.form.reset();
+          });
         },
       });
     } else {
