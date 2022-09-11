@@ -38,6 +38,7 @@
       "@dlp/auth/views": ["src/app/modules/auth/views/index.ts"],
       // Contact
       "@dlp/contact/services": ["src/app/modules/contact/services/index.ts"],
+      "@dlp/contact/views": ["src/app/modules/contact/views/index.ts"],
       // Games
       "@dlp/games/components": ["src/app/modules/games/components/index.ts"],
       "@dlp/games/services": ["src/app/modules/games/services/index.ts"],
