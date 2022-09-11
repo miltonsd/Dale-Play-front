@@ -6,6 +6,7 @@ import { AdminComponent } from './admin.component';
 import { AdminGuard, AuthGuard } from '@dlp/shared/guards';
 // Views
 import {
+  ContactListComponent,
   GamesListComponent,
   GamesCreateComponent,
   GamesUpdateComponent,
@@ -21,28 +22,36 @@ const routes: Routes = [
     component: AdminComponent,
     children: [
       {
+        path: 'contact',
+        component: ContactListComponent,
+      },
+      {
         path: 'users',
         component: UsersListComponent,
-      },
-      {
-        path: 'users/create',
-        component: UsersCreateComponent,
-      },
-      {
-        path: 'users/edit/:userId',
-        component: UsersUpdateComponent,
+        children: [
+          {
+            path: 'create',
+            component: UsersCreateComponent,
+          },
+          {
+            path: 'edit/:userId',
+            component: UsersUpdateComponent,
+          },
+        ],
       },
       {
         path: 'games',
         component: GamesListComponent,
-      },
-      {
-        path: 'games/create',
-        component: GamesCreateComponent,
-      },
-      {
-        path: 'games/edit/:gameId',
-        component: GamesUpdateComponent,
+        children: [
+          {
+            path: 'create',
+            component: GamesCreateComponent,
+          },
+          {
+            path: 'edit/:gameId',
+            component: GamesUpdateComponent,
+          },
+        ],
       },
     ],
   },

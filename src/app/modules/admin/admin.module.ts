@@ -14,10 +14,14 @@ import { UsersUpdateComponent } from '../users/components/users-update/users-upd
 import { GamesUpdateComponent } from './views/games-update/games-update.component';
 import { GamesCreateComponent } from './views/games-create/games-create.component';
 // Views
-import { GamesListComponent, UsersListComponent } from '@dlp/admin/views';
+import {
+  ContactListComponent,
+  GamesListComponent,
+  UsersListComponent,
+} from '@dlp/admin/views';
 
 const modules = [ReactiveFormsModule, ComponentsModule, MaterialModule];
-const views = [GamesListComponent, UsersListComponent];
+const views = [ContactListComponent, GamesListComponent, UsersListComponent];
 
 @NgModule({
   declarations: [

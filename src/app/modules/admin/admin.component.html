@@ -4,6 +4,18 @@
     &nbsp;
 
     <mat-divider></mat-divider>
+
+    <mat-nav-list>
+      <a mat-list-item routerLink="contact" routerLinkActive #home="routerLinkActive">
+        <mat-icon>
+          <span class="material-symbols-outlined">
+            mail
+          </span>
+        </mat-icon>Ver mensajes
+      </a>
+    </mat-nav-list>
+
+    <mat-divider></mat-divider>
     
     <mat-nav-list>
       <a mat-list-item routerLink="users">
@@ -44,6 +56,8 @@
         </mat-icon>Desarrolladores
       </a>
     </mat-nav-list>
+    
+    
   
   </mat-sidenav>
   
@@ -52,6 +66,15 @@
     <div class="admin-content"> 
       <h1 class="titulo">Administración</h1>
       
+      <!-- <ng-container *ngIf="router-; else elseTemplate">
+        
+        <a [routerLink]="[ '/path' ]" routerLinkActive="active">name</a>
+      </ng-container>
+      <ng-template #elseTemplate>
+        
+      </ng-template> -->
+      
+
       <div class="tabla">
         <router-outlet></router-outlet>
       </div>
