@@ -1,9 +1,16 @@
 <div class="main">
 
   <p class="mat-display-2">¿Quiénes somos?</p>
-  <dlp-metrics [digit]="counter.numberUsers" [duration]="1000"></dlp-metrics>
-  <dlp-metrics [digit]="counter.numberGames" [duration]="1000"></dlp-metrics>
-  <dlp-metrics [digit]="counter.numberCategories" [duration]="1000"></dlp-metrics>
-  <dlp-metrics [digit]="counter.numberDevelopers" [duration]="1000"></dlp-metrics>
-  <dlp-metrics [digit]="counter.numberUsergames" [duration]="1000"></dlp-metrics>
+  <ng-container *ngIf="counter">
+    <dlp-metrics [digit]="counter.numberUsers"></dlp-metrics>
+    <h2>Usuarios registrados</h2>
+    <dlp-metrics [digit]="counter.numberCategories"></dlp-metrics>
+    <h2>Categorías</h2>
+    <dlp-metrics [digit]="counter.numberGames"></dlp-metrics>
+    <h2>Juegos</h2>
+    <dlp-metrics [digit]="counter.numberDevelopers"></dlp-metrics>
+    <h2>Desarrolladores</h2>
+    <dlp-metrics [digit]="counter.numberUsergames"></dlp-metrics>
+    <h2>Copias de juegos adquiridas</h2>
+  </ng-container>
 </div>
