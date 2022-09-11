@@ -7,11 +7,10 @@
 .games-filter {
   background: rgba(211, 211, 211, 0.363);
   width: 200px;
-  /* font-size: 20px; */
 }
 
 .radio-button {
-  padding: 2% 15%;
+  padding: 2% 3%;
   width: 90%;
 }
 
