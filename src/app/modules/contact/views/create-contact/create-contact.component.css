@@ -1,21 +1,22 @@
-.login {
+.contact {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 79.7vh;
+  min-height: 88vh;
 }
 
-.login-content {
+.contact-content {
   background-color: antiquewhite; /* Provisorio */
   width: 350px;
   padding: 2%;
   border-radius: 5%;
 }
 
-.login-input {
+.contact-input {
   width: 100%;
+  margin-bottom: 5%;
 }
 
-.login-submit {
-  margin: 3% 0%;
+.contact-submit {
+  margin-bottom: 3%;
 }

@@ -1,22 +1,26 @@
-<div class="login">
-  <form [formGroup]="form" class="login-content" (submit)="onSubmit()">
-    <h1>CONTACTO</h1>
+<div class="contact">
+  <form [formGroup]="form" class="contact-content" (submit)="onSubmit()">
+    <h1>ENVÍE UN MENSAJE</h1>
     
-    <mat-form-field appearance="outline" class="login-input">
-      <mat-label>Ingrese su email</mat-label>
-      <input matInput formControlName="email" placeholder="Email" tabindex="1">
-      <mat-error *ngIf="form.controls.email.hasError('required')">El email es necesario</mat-error>
-      <mat-error *ngIf="form.controls.email.hasError('email')">El email debe tener un formato válido</mat-error>
-      <mat-error *ngIf="form.controls.email.hasError('minlength')">El email debe contener 5 o más caracteres</mat-error>
+    <mat-form-field appearance="outline" class="contact-input">
+      <mat-label>Ingrese el motivo</mat-label>
+      <textarea #reason matInput maxlength="100" [cdkTextareaAutosize]="true" formControlName="reason" placeholder="Motivo" tabindex="1"></textarea>
+      <mat-hint align="end">{{reason.value.length || 0}}/100</mat-hint>
+      <mat-error *ngIf="form.controls.reason.hasError('required')">El asunto es necesario</mat-error>
+      <mat-error *ngIf="form.controls.reason.hasError('minlength')">El asunto debe contener 5 o más caracteres</mat-error>
+      <mat-error *ngIf="form.controls.reason.hasError('maxlength')">El asunto debe tener 100 o menos caracteres</mat-error>
     </mat-form-field>
     
-    <mat-form-field appearance="outline" class="login-input">
+    <mat-form-field appearance="outline" class="contact-input">
       <mat-label>Escriba un mensaje</mat-label>
-      <input matInput formControlName="message" placeholder="Escribe un mensaje" tabindex="2">
-      </mat-form-field>
+      <textarea #msg matInput maxlength="500" [cdkTextareaAutosize]="true" formControlName="message" placeholder="Escribe un mensaje" tabindex="2"></textarea>
+      <mat-hint align="end">{{msg.value.length || 0}}/500</mat-hint>
       <mat-error *ngIf="form.controls.message.hasError('required')">Se debe escribir un mensaje</mat-error>    
+      <mat-error *ngIf="form.controls.message.hasError('minlength')">El mensaje debe contener 5 o más caracteres</mat-error>
+      <mat-error *ngIf="form.controls.message.hasError('maxlength')">El mensaje debe tener 500 o menos caracteres</mat-error>
+    </mat-form-field>
     <button type="submit" mat-flat-button color="primary" class="login-submit" tabindex="3">
-      Enviar
+      Enviar mensaje
     </button>
     
   </form>

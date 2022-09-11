@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { ContactService } from '../../services/contact.service';
+
+import { ContactService } from '@dlp/contact/services';
+import { DialogComponent } from '@dlp/shared/components';
 
 @Component({
   selector: 'dlp-create-contact',
@@ -10,21 +13,26 @@ import { ContactService } from '../../services/contact.service';
 })
 export class CreateContactComponent implements OnInit {
   form = new FormGroup({
-    email: new FormControl('', {
+    reason: new FormControl('', {
       validators: [
         Validators.required,
-        Validators.email,
         Validators.minLength(5),
+        Validators.maxLength(100),
       ],
     }),
     message: new FormControl('', {
-      validators: [Validators.required],
+      validators: [
+        Validators.required,
+        Validators.minLength(5),
+        Validators.maxLength(500),
+      ],
     }),
   });
 
   constructor(
     private _contactService: ContactService,
-    private _router: Router
+    private _router: Router,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {}
@@ -32,18 +40,30 @@ export class CreateContactComponent implements OnInit {
   onSubmit() {
     if (this.form.valid) {
       const contact = {
-        email: this.form.value.email,
+        reason: this.form.value.reason,
         message: this.form.value.message,
       };
+
       this._contactService.createContact(contact).subscribe({
         next: (res: any) => {
-          console.log(res.msg);
+          this.dialog.open(DialogComponent, {
+            width: '375px',
+            autoFocus: true,
+            data: {
+              title: 'Enviar mensaje',
+              msg: res.msg,
+            },
+          });
         },
         error: (err) => {
-          console.error(`Código de error ${err.status}: `, err.error.msg);
-        },
-        complete: () => {
-          this._router.navigate(['/store']);
+          this.dialog.open(DialogComponent, {
+            width: '375px',
+            autoFocus: true,
+            data: {
+              title: 'Error',
+              msg: err.error.msg,
+            },
+          });
         },
       });
     }

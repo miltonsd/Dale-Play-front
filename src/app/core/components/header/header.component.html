@@ -25,17 +25,24 @@
     &nbsp;
     
     <!-- Si el usuario es Admin muestra el enlace -->
-    <ng-container *ngIf="this._authService.getRole() === 1">
+    <ng-container *ngIf="this._authService.getRole() === 1; else usuario">
       
       <a mat-button routerLink="/admin">
         <span>Admin</span>
       </a>      
       
     </ng-container>
+    
+    
+    <!-- En caso de que el usuario no es Admin -->
+    <ng-template #usuario>
 
-    <a mat-button routerLink="/contact/create">
-      <span>Contacto</span>
-    </a>     
+      <a mat-button routerLink="/contact/create">
+        <span>Contacto</span>
+      </a>
+
+    </ng-template>
+    
     
     <span class="nav-spacer"></span>
     <a mat-button (click)="onClick()" class="logout">
