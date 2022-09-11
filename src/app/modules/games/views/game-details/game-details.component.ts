@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 
-import { GamesService, UserGamesService } from '@dlp/games/services';
 import { Game } from '@dlp/games/models';
-import { UsersService } from '@dlp/users/services';
-import { AuthService } from '@dlp/auth/services';
+import { GamesService, UserGamesService } from '@dlp/games/services';
+
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from '@dlp/shared/components';
 
 @Component({
   selector: 'dlp-game-details',
@@ -15,24 +16,22 @@ import { AuthService } from '@dlp/auth/services';
 export class GameDetailsComponent implements OnInit {
   game!: Game;
   games: Game[] = [];
-  gameId!: number;
   trailer: any;
 
   constructor(
     private _gamesService: GamesService,
-    private _userGames: UserGamesService,
-    private _usersService: UsersService,
-    private _authService: AuthService,
+    private _userGamesService: UserGamesService,
     private _router: Router,
     private _activatedRoute: ActivatedRoute,
-    private _sanitizer: DomSanitizer
+    private _sanitizer: DomSanitizer,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
     // Obtengo el id del juego por medio de la ruta
-    this.gameId = Number(this._activatedRoute.snapshot.paramMap.get('gameId'));
+    const gameId = Number(this._activatedRoute.snapshot.paramMap.get('gameId'));
     // Busco el juego
-    this._gamesService.getGame(this.gameId).subscribe({
+    this._gamesService.getGame(gameId).subscribe({
       next: (response: any) => {
         this.game = {
           id: response.id,
@@ -59,32 +58,29 @@ export class GameDetailsComponent implements OnInit {
     });
   }
 
-  hasGame() {
-    const userId = this._authService.getCurrentUserId();
-    this._usersService.getUserGames(userId).subscribe({
-      next: (response: any) => {
-        const games = response.games;
-        if (games.find((game: any) => this.gameId === game.id)) {
-          return true;
-        } else {
-          return false;
-        }
-      },
-      error: (err) => {
-        console.error(`Código de error ${err.status}: `, err.error.msg);
-      },
-    });
-  }
-
   addToLibrary() {
-    this._userGames.addUserGame(this.game.id).subscribe({
+    this._userGamesService.addUserGame(this.game.id).subscribe({
       next: (res: any) => {
-        console.log(res.msg);
-        this._router.navigate(['/profile']);
+        const dialogRef = this.dialog.open(DialogComponent, {
+          width: '350px',
+          data: {
+            title: 'Comprar ' + this.game.name,
+            msg: res.msg,
+          },
+        });
+        dialogRef.afterClosed().subscribe(() => {
+          this._router.navigate(['/profile']);
+        });
       },
       error: (err) => {
-        console.log(err.msg);
-        this._router.navigate(['/store']);
+        console.log(err.error.msg);
+        this.dialog.open(DialogComponent, {
+          width: '350px',
+          data: {
+            title: 'Comprar ' + this.game.name,
+            msg: err.error.msg,
+          },
+        });
       },
     });
   }
