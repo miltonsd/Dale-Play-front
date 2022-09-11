@@ -11,9 +11,9 @@ import {
   GamesCreateComponent,
   GamesUpdateComponent,
   UsersListComponent,
+  UsersCreateComponent,
+  UsersUpdateComponent,
 } from '@dlp/admin/views';
-import { UsersCreateComponent } from '../users/components/users-create/users-create.component';
-import { UsersUpdateComponent } from '../users/components/users-update/users-update.component';
 
 const routes: Routes = [
   {

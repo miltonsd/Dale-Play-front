@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDatepicker } from '@angular/material/datepicker';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Category } from '@dlp/categories/models';
@@ -20,7 +19,6 @@ export class GamesCreateComponent implements OnInit {
   categories: Category[] = [];
 
   isAvailableControl = new FormControl(true);
-  datePicker!: any;
 
   form = new FormGroup({
     name: new FormControl('', {
@@ -79,7 +77,6 @@ export class GamesCreateComponent implements OnInit {
 
   onSubmit() {
     if (this.form.valid) {
-      // const fecha = String(this.form.value.date);
       const game = {
         name: this.form.value.name,
         image:

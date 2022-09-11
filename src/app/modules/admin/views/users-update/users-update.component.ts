@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router, Params } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '@dlp/users/models';
-import { Role } from 'src/app/modules/roles/models/role';
-import { RolesService } from 'src/app/modules/roles/services/roles.service';
-import { UsersService } from '../../services/users/users.service';
+import { Role } from '@dlp/roles/models';
+import { RolesService } from '@dlp/roles/services';
+import { UsersService } from '@dlp/users/services';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from '@dlp/shared/components';
 
 @Component({
   selector: 'dlp-users-update',
@@ -14,6 +16,7 @@ import { UsersService } from '../../services/users/users.service';
 export class UsersUpdateComponent implements OnInit {
   user!: User;
   roles: Role[] = [];
+  fotos: any[] = [];
 
   form = new FormGroup({
     name: new FormControl('', {
@@ -36,7 +39,8 @@ export class UsersUpdateComponent implements OnInit {
     private _usersService: UsersService,
     private _router: Router,
     private _activatedRoute: ActivatedRoute,
-    private _rolesService: RolesService
+    private _rolesService: RolesService,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -52,12 +56,38 @@ export class UsersUpdateComponent implements OnInit {
         this._router.navigate(['/admin/users']);
       },
     });
+
     // Busca los roles
-    this._rolesService.getAllRoles().subscribe({
+    this._rolesService.getRoles().subscribe({
       next: (response: any) => {
         this.roles = response.elemts;
       },
+      error: (err) => {
+        console.error(`Código de error ${err.status}: `, err.error.msg);
+        this._router.navigate(['/admin/users']);
+      },
     });
+
+    // Carga las fotos
+    [1, 2, 3].forEach((i) =>
+      Array(i)
+        .fill(i)
+        .forEach((_) => {
+          this._usersService.getRandomImage().subscribe({
+            next: (response: any) => {
+              const foto = {
+                value: i,
+                image: response.results.picture.large,
+                seed: response.info.seed,
+              };
+              this.fotos.push(foto);
+            },
+            error: (err) => {
+              console.error(err);
+            },
+          });
+        })
+    );
   }
 
   onSubmit() {
@@ -70,13 +100,28 @@ export class UsersUpdateComponent implements OnInit {
       };
       this._usersService.updateUser(this.user.id, user).subscribe({
         next: (res: any) => {
-          console.log(res.msg);
+          const dialogRef = this.dialog.open(DialogComponent, {
+            width: '375px',
+            data: {
+              title: 'Editar usuario',
+              msg: user.name + ' ' + res.msg + ' con éxito.',
+            },
+          });
+          dialogRef.afterClosed().subscribe(() => {
+            this._router.navigate(['/admin/users']);
+          });
         },
         error: (err) => {
-          console.error(`Código de error ${err.status}: `, err.error.msg);
-        },
-        complete: () => {
-          this._router.navigate(['/admin/users']);
+          const dialogRef = this.dialog.open(DialogComponent, {
+            width: '375px',
+            data: {
+              title: 'Editar juego',
+              msg: err.error.msg,
+            },
+          });
+          dialogRef.afterClosed().subscribe(() => {
+            this.form.reset();
+          });
         },
       });
     } else {

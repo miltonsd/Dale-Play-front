@@ -28,7 +28,13 @@ export class UsersService {
   }
 
   getImage(seed: any) {
-    return this._http.get(`https://randomuser.me/api/?seed=${seed}`);
+    return this._http.get(
+      `https://randomuser.me/api/?seed=${seed}&inc=picture`
+    );
+  }
+
+  getRandomImage() {
+    return this._http.get('https://randomuser.me/api/?inc=picture');
   }
 
   getUserGames(userId: number) {
