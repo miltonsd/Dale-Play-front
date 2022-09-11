@@ -59,7 +59,7 @@ export class RegisterComponent implements OnInit {
             width: '375px',
             autoFocus: true,
             data: {
-              title: 'Felicitaciones',
+              title: 'Registro exitoso',
               msg:
                 res.msg +
                 '.  Se ha enviado un correo a su email. Por favor confírmelo',
@@ -74,7 +74,7 @@ export class RegisterComponent implements OnInit {
             width: '375px',
             autoFocus: true,
             data: {
-              title: 'Error',
+              title: 'Error al registrarse',
               msg: err.error.msg,
             },
           });

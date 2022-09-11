@@ -62,10 +62,11 @@ export class GameDetailsComponent implements OnInit {
     this._userGamesService.addUserGame(this.game.id).subscribe({
       next: (res: any) => {
         const dialogRef = this.dialog.open(DialogComponent, {
-          width: '350px',
+          width: '375px',
           data: {
-            title: 'Comprar ' + this.game.name,
-            msg: res.msg,
+            title: 'Éxito al comprar ' + this.game.name,
+            msg:
+              res.msg + '. Se envió un correo con el comprobante de su compra.',
           },
         });
         dialogRef.afterClosed().subscribe(() => {
@@ -73,11 +74,10 @@ export class GameDetailsComponent implements OnInit {
         });
       },
       error: (err) => {
-        console.log(err.error.msg);
         this.dialog.open(DialogComponent, {
-          width: '350px',
+          width: '375px',
           data: {
-            title: 'Comprar ' + this.game.name,
+            title: 'Error al comprar ' + this.game.name,
             msg: err.error.msg,
           },
         });

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
 
 import { ContactService } from '@dlp/contact/services';
 import { DialogComponent } from '@dlp/shared/components';
@@ -31,7 +30,6 @@ export class CreateContactComponent implements OnInit {
 
   constructor(
     private _contactService: ContactService,
-    private _router: Router,
     public dialog: MatDialog
   ) {}
 
