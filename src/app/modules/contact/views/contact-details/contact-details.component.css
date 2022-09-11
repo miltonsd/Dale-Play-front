@@ -1,0 +1,45 @@
+.contact {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  min-height: 87vh;
+  max-height: 100vh;
+}
+
+.contact-details {
+  display: grid;
+  grid-template-areas: "encabezado" "mensaje" "boton";
+  grid-template-rows: 35% auto 5%;
+  background: rgb(255, 223, 165);
+  min-width: 45vw;
+  max-width: 55vw;
+  min-height: 45vh;
+  max-height: 65vh;
+  padding: 2%;
+  border-radius: 5%;
+}
+
+.border {
+  border: 1px solid black;
+}
+
+.titulo {
+  grid-area: encabezado;
+  justify-self: center;
+  font-weight: 600;
+}
+
+.texto {
+  grid-area: mensaje;
+  margin: 1% 3% 2% 0%;
+  padding: 2% 1%;
+  font-size: 16px;
+  border-top: 2px solid grey;
+  border-bottom: 2px solid grey;
+}
+
+.boton {
+  grid-area: boton;
+  justify-self: center;
+  width: 10%;
+}
