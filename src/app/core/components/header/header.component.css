@@ -20,8 +20,11 @@ a:hover {
 }
 
 .logo {
-  font-size: 20px;
-  font-weight: 500;
+  max-height: 64px;
+}
+
+.logo:hover {
+  background: #d3a9a6;
 }
 
 .logout {
