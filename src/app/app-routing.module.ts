@@ -18,12 +18,12 @@ const routes: Routes = [
   },
   {
     path: 'store',
-    canLoad: [AuthGuard],
     loadChildren: () =>
       import('./modules/games/games.module').then((m) => m.GamesModule),
   },
   {
     path: 'profile',
+    canLoad: [AuthGuard],
     loadChildren: () =>
       import('./modules/users/users.module').then((m) => m.UsersModule),
   },
@@ -34,21 +34,8 @@ const routes: Routes = [
       import('./modules/admin/admin.module').then((m) => m.AdminModule),
   },
   {
-    path: 'developers',
-    loadChildren: () =>
-      import('./modules/developers/developers.module').then(
-        (m) => m.DevelopersModule
-      ),
-  },
-  {
-    path: 'categories',
-    loadChildren: () =>
-      import('./modules/categories/categories.module').then(
-        (m) => m.CategoriesModule
-      ),
-  },
-  {
     path: 'contact',
+    canLoad: [AuthGuard],
     loadChildren: () =>
       import('./modules/contact/contact.module').then((m) => m.ContactModule),
   },
