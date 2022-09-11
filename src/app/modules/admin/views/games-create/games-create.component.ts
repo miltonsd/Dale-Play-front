@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDatepicker } from '@angular/material/datepicker';
 import { Router } from '@angular/router';
 import { Category } from '@dlp/categories/models';
 import { CategoriesService } from '@dlp/categories/services';
@@ -16,18 +17,41 @@ export class GamesCreateComponent implements OnInit {
   developers: Developer[] = [];
   categories: Category[] = [];
 
+  isAvailableControl = new FormControl(true);
+  datePicker!: any;
+
   form = new FormGroup({
     name: new FormControl('', {
-      validators: [Validators.required],
+      validators: [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(50),
+      ],
     }),
     description: new FormControl('', {
-      validators: [Validators.required],
+      validators: [
+        Validators.required,
+        Validators.minLength(10),
+        Validators.maxLength(500),
+      ],
     }),
     valoration: new FormControl('', {
-      validators: [Validators.required, Validators.pattern('[1-5]')],
+      validators: [Validators.required],
     }),
-    idCategory: new FormControl(''),
-    idDeveloper: new FormControl(''),
+    idCategory: new FormControl('', {
+      validators: [Validators.required],
+    }),
+    idDeveloper: new FormControl('', {
+      validators: [Validators.required],
+    }),
+    image: new FormControl('', {
+      validators: [Validators.required],
+    }),
+    trailer: new FormControl('', {
+      validators: [Validators.required],
+    }),
+    isAvailable: this.isAvailableControl,
+    date: new FormControl(new Date()),
   });
 
   constructor(
@@ -55,11 +79,15 @@ export class GamesCreateComponent implements OnInit {
       const game = {
         name: this.form.value.name,
         image:
+          this.form.value.image ||
           'https://via.placeholder.com/2000x2000.png?text=Placeholder+Game+Cover',
         valoration: this.form.value.valoration,
         idCategory: this.form.value.idCategory,
         idDeveloper: this.form.value.idDeveloper,
         description: this.form.value.description,
+        trailer: this.form.value.trailer,
+        isAvailable: this.form.value.isAvailable,
+        date: this.form.value.date,
       };
       this._gamesService.createGame(game).subscribe({
         next: (res: any) => {
@@ -68,6 +96,8 @@ export class GamesCreateComponent implements OnInit {
           // console.log(res.msg);
         },
         error: (err) => {
+          console.log(err);
+
           console.error(`Código de error ${err.status}: `, err.error.msg);
         },
         complete: () => {

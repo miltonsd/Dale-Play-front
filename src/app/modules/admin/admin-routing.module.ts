@@ -28,30 +28,26 @@ const routes: Routes = [
       {
         path: 'users',
         component: UsersListComponent,
-        children: [
-          {
-            path: 'create',
-            component: UsersCreateComponent,
-          },
-          {
-            path: 'edit/:userId',
-            component: UsersUpdateComponent,
-          },
-        ],
+      },
+      {
+        path: 'users/create',
+        component: UsersCreateComponent,
+      },
+      {
+        path: 'users/edit/:userId',
+        component: UsersUpdateComponent,
       },
       {
         path: 'games',
         component: GamesListComponent,
-        children: [
-          {
-            path: 'create',
-            component: GamesCreateComponent,
-          },
-          {
-            path: 'edit/:gameId',
-            component: GamesUpdateComponent,
-          },
-        ],
+      },
+      {
+        path: 'games/create',
+        component: GamesCreateComponent,
+      },
+      {
+        path: 'games/edit/:gameId',
+        component: GamesUpdateComponent,
       },
     ],
   },
