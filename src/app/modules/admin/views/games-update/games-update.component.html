@@ -3,42 +3,66 @@
     <h1>EDITAR JUEGO</h1>
 
     <mat-form-field appearance="outline" class="register-input">
-      <mat-label>Ingrese nombre</mat-label>
+      <mat-label>Ingrese el nombre</mat-label>
       <input matInput formControlName="name" placeholder="Nombre" tabindex="1">
       <mat-error *ngIf="form.controls.name.hasError('required')">El nombre es necesario</mat-error>
+      <mat-error *ngIf="form.controls.name.hasError('minlength')">El nombre debe tener 5 o más caracteres</mat-error>
+      <mat-error *ngIf="form.controls.name.hasError('maxlength')">El nombre debe tener 50 caracteres o menos</mat-error>
     </mat-form-field>
     
     <mat-form-field appearance="outline" class="register-input">
-      <mat-label>Ingrese descripciónn</mat-label>
-      <input matInput formControlName="description" placeholder="Apellido" required tabindex="2">
-      <mat-error *ngIf="form.controls.description.hasError('required')">El apellido es necesario</mat-error>
-      <mat-error *ngIf="form.controls.description.hasError('pattern')">El apellido no puede contener números</mat-error>
+      <mat-label>Ingrese descripción</mat-label>
+      <input matInput formControlName="description" placeholder="Descripción" required tabindex="2">
+      <mat-error *ngIf="form.controls.description.hasError('required')">La descripción es necesaria</mat-error>
+      <mat-error *ngIf="form.controls.description.hasError('minlength')">La descripción debe tener 10 o más caracteres</mat-error>
+      <mat-error *ngIf="form.controls.description.hasError('maxlength')">La descripción debe tener 500 caracteres o menos</mat-error>
     </mat-form-field>
     
     <mat-form-field appearance="outline" class="register-input">
-      <mat-label>Ingrese valoration</mat-label>
-      <input matInput formControlName="valoration" placeholder="valoration" tabindex="3">
-      <mat-error *ngIf="form.controls.valoration.hasError('required')">El email es necesario</mat-error>
-      <mat-error *ngIf="form.controls.valoration.hasError('pattern')">El apellido no puede contener números</mat-error>
-      </mat-form-field>
+      <mat-label>Ingrese una valoración</mat-label>
+      <input matInput formControlName="valoration" placeholder="Valoración" tabindex="3">
+      <mat-error *ngIf="form.controls.valoration.hasError('required')">La valoración es necesaria</mat-error>
+      <mat-error *ngIf="form.controls.valoration.hasError('pattern')">La valoracion tiene que estar entre 1 y 5</mat-error>
+    </mat-form-field>
     
-      <mat-form-field appearance="outline" class="register-input">
-        <mat-label>Elija categoria</mat-label>
-        <mat-select formControlName="idCategory">
-          <mat-option *ngFor="let category of categories" [value]="category.id">
-            {{category.name}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+    <mat-form-field appearance="outline" class="register-input">
+      <mat-label>Ingrese una imagen</mat-label>
+      <input matInput formControlName="image" placeholder="Imagen" tabindex="3">
+      <mat-error *ngIf="form.controls.image.hasError('required')">La imagen es necesaria</mat-error>
+    </mat-form-field>
     
-      <mat-form-field appearance="outline" class="register-input">
-        <mat-label>Elija desarrollador</mat-label>
-        <mat-select formControlName="idDeveloper">
-          <mat-option *ngFor="let dev of developers" [value]="dev.id">
-            {{dev.name}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+    <mat-form-field appearance="outline" class="register-input">
+      <mat-label>Ingrese un trailer</mat-label>
+      <input matInput formControlName="trailer" placeholder="Trailer" tabindex="3">
+      <mat-error *ngIf="form.controls.trailer.hasError('required')">El trailer es necesario</mat-error>
+    </mat-form-field>
+    
+    <mat-form-field appearance="outline" class="register-input">
+      <mat-label>Elija una categoria</mat-label>
+      <mat-select formControlName="idCategory">
+        <mat-option *ngFor="let category of categories" [value]="category.id">
+          {{category.name}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.controls.idCategory.hasError('required')">La categoría es necesaria</mat-error>
+    </mat-form-field>
+    
+    <mat-form-field appearance="outline" class="register-input">
+      <mat-label>Elija un desarrollador</mat-label>
+      <mat-select formControlName="idDeveloper">
+        <mat-option *ngFor="let dev of developers" [value]="dev.id">
+          {{dev.name}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.controls.idDeveloper.hasError('required')">El desarrollador es necesario</mat-error>
+    </mat-form-field>
+    
+    <mat-checkbox class="example-margin" [formControl]="isAvailableControl">¿Está disponible?</mat-checkbox>
+    <mat-form-field appearance="outline" class="register-input">
+      <input matInput formControlName="date" placeholder="Fecha de lanzamiento" [matDatepicker]="datePicker" [disabled]="isAvailableControl.value || false" >
+      <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
+      <mat-datepicker #datePicker  ></mat-datepicker>
+    </mat-form-field>
 
 
     <button type="submit" mat-flat-button color="primary" class="register-submit" tabindex="6">

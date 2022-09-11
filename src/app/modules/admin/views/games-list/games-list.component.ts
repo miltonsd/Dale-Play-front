@@ -79,7 +79,7 @@ export class GamesListComponent implements OnInit {
     this._gamesService.deleteGame(game.id).subscribe({
       next: () => {
         const dialogRef = this.dialog.open(DialogComponent, {
-          width: '350px',
+          width: '375px',
           data: {
             title: 'Eliminar Juego',
             msg: 'Se ha eliminado el juego ' + game.name + ' con éxito.',
@@ -93,7 +93,7 @@ export class GamesListComponent implements OnInit {
       },
       error: (err) => {
         this.dialog.open(DialogComponent, {
-          width: '350px',
+          width: '375px',
           data: {
             title: 'Eliminar Juego - Error',
             msg: err.error.msg,
