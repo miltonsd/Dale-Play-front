@@ -30,11 +30,14 @@
       "@dlp/shared/models": ["src/app/shared/models/index.ts"],
       // Home
       "@dlp/home/views": ["src/app/modules/home/views/index.ts"],
+      "@dlp/home/services": ["src/app/modules/home/services/index.ts"],
       // Admin
       "@dlp/admin/views": ["src/app/modules/admin/views/index.ts"],
       // Auth
       "@dlp/auth/services": ["src/app/modules/auth/services/index.ts"],
       "@dlp/auth/views": ["src/app/modules/auth/views/index.ts"],
+      // Contact
+      "@dlp/contact/services": ["src/app/modules/contact/services/index.ts"],
       // Games
       "@dlp/games/components": ["src/app/modules/games/components/index.ts"],
       "@dlp/games/services": ["src/app/modules/games/services/index.ts"],
@@ -50,6 +53,9 @@
       "@dlp/categories/models": [
         "src/app/modules/categories/models/category.ts"
       ],
+      // Roles
+      "@dlp/roles/services": ["src/app/modules/roles/services/index.ts"],
+      "@dlp/roles/models": ["src/app/modules/roles/models/role.ts"],
       // Users
       "@dlp/users/services": ["src/app/modules/users/services/index.ts"],
       "@dlp/users/views": ["src/app/modules/users/views/index.ts"],

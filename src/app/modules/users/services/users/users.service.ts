@@ -2,29 +2,29 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { environment } from 'src/environments/environment';
-import { catchError, map, throwError } from 'rxjs';
-import { Game } from '@dlp/games/models';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UsersService {
+  url = environment.apiUrl + '/users';
+
   constructor(private _http: HttpClient) {}
 
   getUser(userId: number) {
-    return this._http.get(`${environment.apiUrl}/users/${userId}`);
+    return this._http.get(`${this.url}/${userId}`);
   }
 
-  getAllUsers() {
-    return this._http.get(`${environment.apiUrl}/users/`);
+  getUsers() {
+    return this._http.get(`${this.url}/`);
   }
 
   deleteUser(userId: number) {
-    return this._http.delete(`${environment.apiUrl}/users/${userId}`);
+    return this._http.delete(`${this.url}/${userId}`);
   }
 
   updateUser(userId: number, user: any) {
-    return this._http.patch(`${environment.apiUrl}/users/${userId}`, user);
+    return this._http.patch(`${this.url}/${userId}`, user);
   }
 
   getImage(seed: any) {
@@ -32,6 +32,6 @@ export class UsersService {
   }
 
   getUserGames(userId: number) {
-    return this._http.get(`${environment.apiUrl}/users/${userId}/games`);
+    return this._http.get(`${this.url}/${userId}/games`);
   }
 }
