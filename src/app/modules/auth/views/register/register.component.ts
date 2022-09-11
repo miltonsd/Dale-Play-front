@@ -56,7 +56,8 @@ export class RegisterComponent implements OnInit {
         next: (res: any) => {
           console.log(res.msg);
           const dialogRef = this.dialog.open(DialogComponent, {
-            width: '400px',
+            width: '375px',
+            autoFocus: true,
             data: {
               title: 'Felicitaciones',
               msg:
@@ -70,7 +71,8 @@ export class RegisterComponent implements OnInit {
         },
         error: (err) => {
           const dialogRef = this.dialog.open(DialogComponent, {
-            width: '400px',
+            width: '375px',
+            autoFocus: true,
             data: {
               title: 'Error',
               msg: err.error.msg,

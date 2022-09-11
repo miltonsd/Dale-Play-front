@@ -45,7 +45,8 @@ export class LoginComponent implements OnInit {
         },
         error: (err) => {
           const dialogRef = this.dialog.open(DialogComponent, {
-            width: '400px',
+            width: '375px',
+            autoFocus: true,
             data: { title: 'Error', msg: err.error.msg },
           });
           dialogRef.afterClosed().subscribe(() => {

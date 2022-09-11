@@ -14,8 +14,9 @@
 
 .login-input {
   width: 100%;
+  margin-bottom: 5%;
 }
 
 .login-submit {
-  margin: 3% 0%;
+  margin-bottom: 3%;
 }

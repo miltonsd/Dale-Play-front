@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 79.7vh;
+  min-height: 88vh;
 }
 
 .register-content {
@@ -14,8 +14,9 @@
 
 .register-input {
   width: 100%;
+  margin-bottom: 5%;
 }
 
 .register-submit {
-  margin: 3% 0%;
+  margin-bottom: 3%;
 }
