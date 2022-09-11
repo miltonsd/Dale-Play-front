@@ -43,7 +43,7 @@ export class UsersListComponent implements OnInit {
     ];
 
     // Busca los usuarios
-    this._usersService.getAllUsers().subscribe({
+    this._usersService.getUsers().subscribe({
       next: (response: any) => {
         this.response = response;
         const users: User[] = [];

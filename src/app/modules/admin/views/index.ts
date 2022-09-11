@@ -1,3 +1,5 @@
+// Contact
+export * from './contact-list/contact-list.component';
 // Games
 export * from './games-list/games-list.component';
 export * from './games-create/games-create.component';

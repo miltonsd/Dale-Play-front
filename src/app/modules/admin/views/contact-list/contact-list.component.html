@@ -1,0 +1,17 @@
+<ng-container *ngIf="contacts"> 
+  <div class="profile">  
+
+    <h1 class="titulo">CONTACTOS</h1>
+
+    <article class="contacts-library">
+      
+      <ng-container *ngIf="contacts">
+        
+        <!-- Tabla -->
+        <dlp-table [tableData]="contacts" [tableColumns]="contactsTableColumns"></dlp-table>
+
+      </ng-container>
+    </article>
+      
+  </div>
+</ng-container>

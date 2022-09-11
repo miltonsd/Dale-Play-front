@@ -63,7 +63,9 @@ export class GamesCreateComponent implements OnInit {
       };
       this._gamesService.createGame(game).subscribe({
         next: (res: any) => {
-          console.log(res.msg);
+          console.log(res);
+
+          // console.log(res.msg);
         },
         error: (err) => {
           console.error(`Código de error ${err.status}: `, err.error.msg);
