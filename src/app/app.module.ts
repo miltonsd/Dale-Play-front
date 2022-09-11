@@ -15,6 +15,7 @@ import { HeaderComponent, FooterComponent } from '@dlp/core/components';
 import { TokenInterceptorService } from '@dlp/shared/services';
 // Guards
 import { AdminGuard, AuthGuard } from '@dlp/shared/guards';
+import { MatNativeDateModule } from '@angular/material/core';
 
 const modules = [ComponentsModule, MaterialModule];
 const components = [HeaderComponent, FooterComponent];
@@ -25,6 +26,7 @@ const components = [HeaderComponent, FooterComponent];
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    MatNativeDateModule,
     ...modules,
   ],
   providers: [

@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDatepicker } from '@angular/material/datepicker';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Category } from '@dlp/categories/models';
 import { CategoriesService } from '@dlp/categories/services';
 import { Developer } from '@dlp/devs/models';
 import { DevelopersService } from '@dlp/devs/services';
+import { DialogComponent } from '@dlp/shared/components';
 import { GamesService } from '../../../games/services/games/games.service';
 
 @Component({
@@ -58,7 +60,8 @@ export class GamesCreateComponent implements OnInit {
     private _gamesService: GamesService,
     private _categoriesService: CategoriesService,
     private _developersService: DevelopersService,
-    private _router: Router
+    private _router: Router,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -76,6 +79,7 @@ export class GamesCreateComponent implements OnInit {
 
   onSubmit() {
     if (this.form.valid) {
+      // const fecha = String(this.form.value.date);
       const game = {
         name: this.form.value.name,
         image:
@@ -87,21 +91,32 @@ export class GamesCreateComponent implements OnInit {
         description: this.form.value.description,
         trailer: this.form.value.trailer,
         isAvailable: this.form.value.isAvailable,
-        date: this.form.value.date,
+        date: this.form.value.date?.toISOString().split('T')[0],
       };
       this._gamesService.createGame(game).subscribe({
         next: (res: any) => {
-          console.log(res);
-
-          // console.log(res.msg);
+          const dialogRef = this.dialog.open(DialogComponent, {
+            width: '375px',
+            data: {
+              title: 'Registrar juego',
+              msg: game.name + ' ' + res.msg + ' con éxito.',
+            },
+          });
+          dialogRef.afterClosed().subscribe(() => {
+            this._router.navigate(['/admin/games']);
+          });
         },
         error: (err) => {
-          console.log(err);
-
-          console.error(`Código de error ${err.status}: `, err.error.msg);
-        },
-        complete: () => {
-          this._router.navigate(['/admin/games']);
+          const dialogRef = this.dialog.open(DialogComponent, {
+            width: '375px',
+            data: {
+              title: 'Registrar juego',
+              msg: err.error.msg,
+            },
+          });
+          dialogRef.afterClosed().subscribe(() => {
+            this.form.reset();
+          });
         },
       });
     } else {
