@@ -9,14 +9,21 @@
   width: 200px;
 }
 
+.content {
+  display: flex;
+  justify-content: center;
+}
+
 .admin-content {
   display: grid;
-  grid-template-areas: "titulo" "tabla";
+  grid-template-areas: "titulo" "opciones" "tabla";
   grid-template-columns: 100%;
-  grid-template-rows: 10vh auto;
+  grid-template-rows: 10vh 10vh auto;
   align-items: center;
   justify-content: center;
   margin-bottom: 5vh;
+  width: 62vw;
+  min-height: 83vh;
 }
 
 .titulo {
@@ -25,6 +32,12 @@
   font-size: 48px;
   font-weight: 700;
   line-height: 48px;
+}
+
+.opciones {
+  grid-area: opciones;
+  min-width: 50vw;
+  max-width: 62vw;
 }
 
 .tabla {

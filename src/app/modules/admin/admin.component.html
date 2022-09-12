@@ -1,6 +1,6 @@
 <mat-sidenav-container>
   <!-- Barra lateral -->
-  <mat-sidenav mode="side" opened class="games-filter">
+  <mat-sidenav mode="side" [(opened)]="isShowing" opened class="games-filter">
     &nbsp;
 
     <mat-divider></mat-divider>
@@ -61,11 +61,20 @@
   
   </mat-sidenav>
   
-  <mat-sidenav-content>
+  <mat-sidenav-content class="content">
     <!-- Contenido -->
     <div class="admin-content"> 
       <h1 class="titulo">Administración</h1>
       
+      <div class="opciones">
+        <button mat-raised-button (click)="toggleSidenav()">
+          <mat-icon>
+            <span class="material-symbols-rounded">
+              menu
+            </span>
+          </mat-icon>Opciones
+        </button>
+      </div>
       <!-- <ng-container *ngIf="router-; else elseTemplate">
         
         <a [routerLink]="[ '/path' ]" routerLinkActive="active">name</a>

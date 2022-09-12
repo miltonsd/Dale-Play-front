@@ -6,7 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin.component.css'],
 })
 export class AdminComponent implements OnInit {
+  isShowing!: boolean;
+
   constructor() {}
 
   ngOnInit(): void {}
+
+  toggleSidenav() {
+    this.isShowing = !this.isShowing;
+  }
 }
