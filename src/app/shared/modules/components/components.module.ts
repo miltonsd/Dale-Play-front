@@ -6,6 +6,7 @@ import {
   TableComponent,
   DialogComponent,
   ConfirmDialogComponent,
+  CarrouselComponent,
 } from '@dlp/shared/components';
 import { MaterialModule } from '../material/material.module';
 import { RouterModule } from '@angular/router';
@@ -15,6 +16,7 @@ const components = [
   TableComponent,
   DialogComponent,
   ConfirmDialogComponent,
+  CarrouselComponent,
 ];
 
 @NgModule({
