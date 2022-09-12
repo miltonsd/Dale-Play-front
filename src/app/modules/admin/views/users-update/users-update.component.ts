@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { User } from '@dlp/users/models';
+import { User } from '../../../../modules/users/models/User';
 import { Role } from '@dlp/roles/models';
 import { RolesService } from '@dlp/roles/services';
 import { UsersService } from '@dlp/users/services';

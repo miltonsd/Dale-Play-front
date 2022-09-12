@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';
 import { TableColumn } from '@dlp/shared/models';
-import { User } from '@dlp/users/models';
+import { User } from '../../../users/models/User';
 import { UsersService } from '@dlp/users/services';
 
 import { MatDialog } from '@angular/material/dialog';

@@ -5,7 +5,7 @@ import { AuthService } from '@dlp/auth/services';
 import { GamesService } from '@dlp/games/services';
 import { TableColumn } from '@dlp/shared/models';
 import { Game } from '@dlp/games/models';
-import { User } from '@dlp/users/models';
+import { User } from '../../models/User';
 @Component({
   selector: 'dlp-profile',
   templateUrl: './profile.component.html',
