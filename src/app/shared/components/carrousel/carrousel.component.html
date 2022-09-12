@@ -1,29 +1,30 @@
-<div *ngIf="games && games.length > 0" class="carrousel-container">
-  <img *ngFor="let game of games; let i = index" 
-      [src]="game.image" [alt]="game.name + ' cover'" 
-      [ngClass]="{'image-active': selectedIndex === i}"
-      class="fade"
-  >
+<ng-container *ngIf="games && games.length > 0">  
+  <p class="mat-display-1 game-title" >{{games[selectedIndex].name}}</p>
+  <div class="carrousel-container">
+    <img *ngFor="let element of games; let i = index" 
+          [src]="element.image" [alt]="element.name + ' cover'" 
+          [ngClass]="{'image-active': selectedIndex === i}"
+          class="fade">
 
-  <div *ngIf="indicators" class="carrousel-dot-container">
-    <span *ngFor="let dot of games; let i = index" 
-        class="dot"
-        [ngClass]="{'active': selectedIndex === i}"
-        (click)="selectImage(i)"
-    >
-    </span>
+    <div *ngIf="indicators" class="carrousel-dot-container">
+      <span *ngFor="let dot of games; let i = index" class="dot"
+            [ngClass]="{'active': selectedIndex === i}"
+            (click)="selectImage(i)">
+      </span>
+    </div>
+
+    <button *ngIf="controls" class="btn-carrousel btn-prev">
+      <mat-icon class="material-symbols-outlined icon-carrousel icon-prev" (click)="onPrevClick()">
+        arrow_circle_left
+      </mat-icon>
+    </button>
+
+    <button *ngIf="controls" class="btn-carrousel btn-next">
+      <mat-icon class="material-symbols-outlined icon-carrousel icon-next" (click)="onNextClick()"> 
+        arrow_circle_right
+      </mat-icon>
+    </button>
   </div>
-
-  <button *ngIf="controls" class="btn-carrousel btn-prev">
-    <mat-icon class="material-symbols-outlined icon-carrousel icon-prev" (click)="onPrevClick()">
-      <!-- chevron_left -->
-      arrow_circle_left
-    </mat-icon>
-  </button>
   
-  <button *ngIf="controls" class="btn-carrousel btn-next">
-    <mat-icon class="material-symbols-outlined icon-carrousel icon-next" (click)="onNextClick()"> 
-      arrow_circle_right
-    </mat-icon>
-  </button>
-</div>
+  <p class="mat-h3 game-date">Fecha de lanzamiento: {{games[selectedIndex].date.slice(0,10)}}</p>
+</ng-container>

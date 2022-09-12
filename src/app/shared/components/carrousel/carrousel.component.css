@@ -1,23 +1,34 @@
+.game-title {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1%;
+}
+
+.game-date {
+  display: flex;
+  justify-content: center;
+  margin-top: 1%;
+}
+
 .carrousel-container {
   position: relative;
-  background: rgba(46, 45, 45, 0.76);
+  background: rgba(0, 0, 0, 0.863);
   margin: auto;
   text-align: center;
-  width: 700px;
+  width: 550px;
   border-radius: 15px;
   box-shadow: 0 8px 16px #dce1e1;
 }
 
 .carrousel-container img {
   display: none;
-  /* border-radius: 15px; */
 }
 
 .carrousel-container img.image-active {
   display: block;
   justify-content: center;
   margin: auto;
-  height: 500px;
+  height: 400px;
 }
 
 .carrousel-dot-container {
