@@ -1,0 +1,15 @@
+.main {
+  min-height: 88vh;
+}
+
+.titulo {
+  margin-bottom: 0%;
+}
+
+.titulo,
+.presentacion {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: 1%;
+}
