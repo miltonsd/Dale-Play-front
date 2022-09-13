@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { NotfoundComponent } from '@dlp/shared/components';
 
-import { AdminGuard, AuthGuard } from '@dlp/shared/guards';
+import { AdminGuard, AuthGuard, UserGuard } from '@dlp/shared/guards';
 
 const routes: Routes = [
   {
@@ -35,7 +35,7 @@ const routes: Routes = [
   },
   {
     path: 'contact',
-    canLoad: [AuthGuard],
+    canLoad: [AuthGuard, UserGuard],
     loadChildren: () =>
       import('./modules/contact/contact.module').then((m) => m.ContactModule),
   },
