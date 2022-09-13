@@ -2,20 +2,19 @@
   display: grid;
   justify-items: center;
   align-items: center;
-  min-height: 87vh;
-  max-height: 100vh;
+  min-height: 85vh;
+  max-height: 95vh;
 }
 
 .game-details {
   display: grid;
-  grid-template-areas: "titulo panel" "descripcion panel" "trailer panel";
-  grid-template-columns: 76% auto;
+  grid-template-areas: "titulo" "descripcion" "panel";
+  grid-template-columns: 100%;
   grid-template-rows: 12% auto auto;
   background: rgb(255, 223, 165);
-  min-width: 45vw;
-  max-width: 55vw;
+  width: 80vw;
   min-height: 55vh;
-  max-height: 65vh;
+  max-height: 75vh;
   padding: 2%;
   border-radius: 5%;
 }
@@ -34,22 +33,20 @@
   grid-area: descripcion;
   margin: 1% 3% 2% 0%;
   padding: 2% 1%;
-  font-size: 16px;
+  font-size: 12px;
   border-top: 2px solid grey;
   border-bottom: 2px solid grey;
+  text-align: justify;
 }
 
 .trailer {
-  grid-area: trailer;
-  justify-self: center;
-  max-height: 315px;
+  visibility: hidden;
 }
 
 .panel {
   grid-area: panel;
-  max-width: 225px;
-  padding: 5%;
-  border-left: 2px solid grey;
+  max-width: 200px;
+  justify-self: center;
 }
 
 .info-panel {
@@ -61,10 +58,51 @@
 }
 
 .cover {
-  max-width: 220px;
+  max-width: 100px;
   border: 2px solid black;
 }
 
 .boton {
   width: 100%;
+}
+
+@media only screen and (min-width: 768px) {
+  .game-details {
+    grid-template-areas: "titulo panel" "descripcion panel" "trailer panel";
+    grid-template-columns: 76% auto;
+    width: 98vw;
+    max-height: 65vh;
+  }
+
+  .texto {
+    font-size: 16px;
+  }
+
+  .trailer {
+    grid-area: trailer;
+    justify-self: center;
+    max-height: 315px;
+    visibility: visible;
+  }
+
+  .cover {
+    max-width: 150px;
+  }
+
+  .panel {
+    max-width: 225px;
+    padding: 5%;
+    border-left: 2px solid grey;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .game-details {
+    min-width: 50vw;
+    max-width: 70vw;
+  }
+
+  .cover {
+    max-width: 220px;
+  }
 }
