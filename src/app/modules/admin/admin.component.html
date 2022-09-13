@@ -1,6 +1,6 @@
 <mat-sidenav-container>
   <!-- Barra lateral -->
-  <mat-sidenav mode="side" [(opened)]="isShowing" opened class="games-filter">
+  <mat-sidenav mode="side" [(opened)]="isShowing" opened class="admin-panel">
     &nbsp;
 
     <mat-divider></mat-divider>
@@ -36,29 +36,7 @@
         </mat-icon>Juegos
       </a>
     </mat-nav-list>
-    
-    <mat-nav-list>
-      <a mat-list-item routerLink="categories">
-        <mat-icon>
-          <span class="material-symbols-outlined">
-            bookmark
-          </span>
-        </mat-icon>Categorías
-      </a>
-    </mat-nav-list>
-
-    <mat-nav-list>
-      <a mat-list-item routerLink="developers">
-        <mat-icon>
-          <span class="material-symbols-outlined">
-            code_blocks
-          </span>
-        </mat-icon>Desarrolladores
-      </a>
-    </mat-nav-list>
-    
-    
-  
+     
   </mat-sidenav>
   
   <mat-sidenav-content class="content">
@@ -75,14 +53,6 @@
           </mat-icon>Opciones
         </button>
       </div>
-      <!-- <ng-container *ngIf="router-; else elseTemplate">
-        
-        <a [routerLink]="[ '/path' ]" routerLinkActive="active">name</a>
-      </ng-container>
-      <ng-template #elseTemplate>
-        
-      </ng-template> -->
-      
 
       <div class="tabla">
         <router-outlet></router-outlet>

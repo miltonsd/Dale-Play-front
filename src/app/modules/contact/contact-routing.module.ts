@@ -5,11 +5,24 @@ import {
   ContactDetailsComponent,
   CreateContactComponent,
 } from '@dlp/contact/views';
+import { AdminGuard, AuthGuard, UserGuard } from '@dlp/shared/guards';
 
 const routes: Routes = [
-  { path: '', component: ContactComponent },
-  { path: 'create', component: CreateContactComponent },
-  { path: 'message/:msgId', component: ContactDetailsComponent },
+  {
+    path: '',
+    canActivate: [AuthGuard, AdminGuard],
+    component: ContactComponent,
+  },
+  {
+    path: 'create',
+    canActivate: [AuthGuard, UserGuard],
+    component: CreateContactComponent,
+  },
+  {
+    path: 'message/:msgId',
+    canActivate: [AuthGuard, AdminGuard],
+    component: ContactDetailsComponent,
+  },
 ];
 
 @NgModule({

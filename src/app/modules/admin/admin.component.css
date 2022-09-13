@@ -1,11 +1,5 @@
-.with-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.games-filter {
-  background: rgba(211, 211, 211, 0.363);
+.admin-panel {
+  background: rgb(255, 195, 138);
   width: 200px;
 }
 
@@ -22,7 +16,7 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 5vh;
-  width: 62vw;
+  width: 80vw;
   min-height: 83vh;
 }
 
@@ -42,6 +36,6 @@
 
 .tabla {
   grid-area: tabla;
-  gap: 2rem;
+  gap: 1rem;
   min-height: 73vh;
 }
