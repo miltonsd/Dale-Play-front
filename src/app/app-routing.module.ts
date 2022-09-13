@@ -35,7 +35,7 @@ const routes: Routes = [
   },
   {
     path: 'contact',
-    canLoad: [AuthGuard, UserGuard],
+    canLoad: [AuthGuard],
     loadChildren: () =>
       import('./modules/contact/contact.module').then((m) => m.ContactModule),
   },
