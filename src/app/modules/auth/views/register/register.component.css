@@ -6,10 +6,11 @@
 }
 
 .register-content {
-  background-color: antiquewhite; /* Provisorio */
-  width: 350px;
-  padding: 2%;
+  background-color: rgb(248, 234, 190);
+  width: 300px;
+  padding: 5%;
   border-radius: 5%;
+  border: 1px solid black;
 }
 
 .register-input {
@@ -19,4 +20,17 @@
 
 .register-submit {
   margin-bottom: 3%;
+}
+
+@media only screen and (min-width: 768px) {
+  .register-content {
+    width: 375px;
+    padding: 4%;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .register-content {
+    padding: 2%;
+  }
 }

@@ -5,7 +5,7 @@
 }
 
 .games-filter {
-  background: rgba(211, 211, 211, 0.363);
+  background: rgb(255, 195, 138);
   width: 200px;
 }
 
@@ -41,8 +41,7 @@
 
 .busqueda {
   grid-area: busqueda;
-  min-width: 50vw;
-  max-width: 62vw;
+  width: 70vw;
 }
 
 .filtro {
@@ -52,8 +51,8 @@
 .cards {
   grid-area: games;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 2rem;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1rem;
   min-height: 72vh;
 }
 
@@ -61,4 +60,34 @@
   grid-area: noGames;
   display: flex;
   justify-content: center;
+}
+
+@media only screen and (min-width: 768px) {
+  .busqueda {
+    width: 80vw;
+  }
+
+  .games-content {
+    width: 72vw;
+  }
+
+  .cards {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .busqueda {
+    width: 83vw;
+  }
+
+  .games-content {
+    width: 82vw;
+  }
+
+  .cards {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2rem;
+  }
 }
