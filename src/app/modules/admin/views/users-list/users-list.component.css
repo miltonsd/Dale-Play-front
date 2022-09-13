@@ -1,7 +1,7 @@
-.profile {
+.main {
   margin: auto;
   margin-top: 85px;
-  background-color: lightblue;
+  background-color: rgb(224, 233, 236);
   justify-content: center;
   max-width: 1280px;
   padding: 10px;
@@ -16,41 +16,8 @@
   padding: 10px 10px 20px 10px;
 }
 
-.games-library {
-  max-width: 1280px;
+.users {
+  max-width: 80vw;
   margin: auto;
   justify-content: center;
-}
-
-.tabla {
-  width: 100%;
-}
-
-mat-form-field {
-  width: 100%;
-}
-
-.cover {
-  max-width: 80px;
-}
-
-.grid-profile {
-  display: grid;
-  grid-template-areas: "photo info";
-  grid-template-columns: 12% auto;
-  align-items: center;
-  justify-content: center;
-}
-
-.profile-photo {
-  grid-area: photo;
-  max-height: 130px;
-}
-
-.profile-info {
-  grid-area: info;
-}
-
-img {
-  max-height: 100px;
 }
