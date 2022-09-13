@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 import { UsersService } from '@dlp/users/services';
 import { AuthService } from '@dlp/auth/services';
-import { GamesService } from '@dlp/games/services';
+
 import { TableColumn } from '@dlp/shared/models';
 import { Game } from '@dlp/games/models';
-import { User } from '../../models/User';
+import { User } from '../../models/user';
 @Component({
   selector: 'dlp-profile',
   templateUrl: './profile.component.html',
@@ -20,8 +20,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private _usersService: UsersService,
-    private _authService: AuthService,
-    private _gamesService: GamesService
+    private _authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -77,14 +76,6 @@ export class ProfileComponent implements OnInit {
           });
         });
         this.games = games;
-        // Filtro personalizado (Nombre Juego, Desarrollador, Categoría)
-        // this.dataSource.filterPredicate = (data, filter) => {
-        // return (
-        //   data.name.toLowerCase().includes(filter) ||
-        // data.developer.toLowerCase().includes(filter) ||
-        // data.category.toLowerCase().includes(filter)
-        // );
-        // };
       },
       error: (err) => {
         console.error(`Código de error ${err.status}: `, err.error.msg);

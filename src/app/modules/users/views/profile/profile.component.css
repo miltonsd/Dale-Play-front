@@ -1,10 +1,11 @@
 .profile {
   margin: auto;
   margin-top: 85px;
-  background-color: lightblue;
+  background-color: rgb(224, 233, 236);
   justify-content: center;
   max-width: 1280px;
   padding: 10px;
+  border-radius: 5%;
 }
 
 .titulo {
@@ -26,7 +27,7 @@
   width: 100%;
 }
 
-mat-form-field {
+.mat-form-field {
   width: 100%;
 }
 
@@ -44,9 +45,21 @@ mat-form-field {
 
 .profile-photo {
   grid-area: photo;
-  max-height: 130px;
+  max-height: 60px;
 }
 
 .profile-info {
   grid-area: info;
+}
+
+@media only screen and (min-width: 768px) {
+  .profile-photo {
+    max-height: 80px;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .profile-photo {
+    max-height: 120px;
+  }
 }
